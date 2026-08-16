@@ -1,0 +1,61 @@
+{
+    "Mango Tea": {
+        "stock": 100,
+        "image": "",
+        "size_prices": [
+            {"size": "small", "price": ""}, 
+            {"size": "medium", "price": ""},
+            {"size": "large", "price": ""}
+        ]
+    },
+
+    "Lemon Tea": {
+        "stock": 100,
+        "image": "",
+        "size_prices": [
+            {"size": "small", "price": ""}, 
+            {"size": "medium", "price": ""},
+            {"size": "large", "price": ""}
+        ]
+    },
+
+    "Strawberry Tea": {
+        "stock": 100,
+        "image": "",
+        "size_prices": [
+            {"size": "small", "price": ""}, 
+            {"size": "medium", "price": ""},
+            {"size": "large", "price": ""}
+        ]
+    }, 
+
+    "Pineapple Tea": {
+        "stock": 100,
+        "image": "",
+        "size_prices": [
+            {"size": "small", "price": ""}, 
+            {"size": "medium", "price": ""},
+            {"size": "large", "price": ""}
+        ]
+    },
+
+    "Kiwi Tea": {
+        "stock": 100,
+        "image": "",
+        "size_prices": [
+            {"size": "small", "price": ""}, 
+            {"size": "medium", "price": ""},
+            {"size": "large", "price": ""}
+        ]
+    },
+
+    "Lynchee Tea": {
+        "stock": 100,
+        "image": "",
+        "size_prices": [
+            {"size": "small", "price": ""}, 
+            {"size": "medium", "price": ""},
+            {"size": "large", "price": ""}
+        ]
+    }
+}
