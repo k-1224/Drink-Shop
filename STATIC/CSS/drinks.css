@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Oi&family=Quicksand:wght@300..700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-height: 100px;
+    max-width: auto;
+}
+
+.milk_tea-list {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);  
+    gap: 40px;
+    padding: 20px;
+    border: 2px black solid;
+    margin: 20px;
+}
+
+.milktea-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+    border: 2px black solid;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+    aspect-ratio: 2 / 3;
+
+}
+
+.milktea-image {
+    width: 100%;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.milktea-sizes {
+    list-style: none;
+}   
+
+footer {
+    position:sticky;
+}
+
+
+/* .milk_tea-list {
+    display: flex;
+    flex-wrap: wrap;       
+    margin: 10px 20px;
+}
+
+.milktea-card {
+    display: flex;
+    flex-direction: column;   
+    border: 2px solid blue;
+    width: 250px;              
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.milktea-image {
+    border-bottom: 2px solid orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.milktea-image img {
+    width: 100%;      
+    height: auto;
+}
+
+.milktea-name-desc {
+    display: flex;
+    flex-direction: column;   
+    border: none;
+    padding: 10px;
+    gap: 6px;
+}
+
+.milktea-name {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.milktea-desc {
+    font-size: 0.9em;
+    color: #555;
+    margin: 0;
+}
+
+.milktea-price {
+    font-weight: bold;
+    margin: 0;
+} */

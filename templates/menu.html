@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Nomolicious {% endblock %}
+
+{%block content %} 
+
+<div class="milk_tea-list">
+    {% for milk_tea, details in milk_teas.items() %}
+        <div class="milktea-card">
+            <div class="milktea-image">
+                <img src="{{ details['image'] }}">
+                <hr>
+            </div>
+            <div class="milktea-name-desc">
+                <p class="milktea-name">{{ milk_tea }}</p>
+                <p class="milktea-desc">{{ details['descriptions'] }}</p>
+                <ul class="milktea-sizes">
+                    {% for size_price in details['size_prices'] %}
+                        {% if size_price['size'] == 'small' %}
+                            <li>NZ${{ size_price['price'] }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="milk_tea-list">
+    {% for latte, details in lattes.items() %}
+        <div class="milktea-card">
+            <div class="milktea-image">
+                <img src="{{ details['image'] }}">
+            </div>
+            <div class="milktea-name-desc">
+                <p class="milktea-name">{{ latte }}</p>
+                <p class="milktea-desc">{{ details['descriptions'] }}</p>
+                <ul class="milktea-sizes">
+                    {% for size_price in details['size_prices'] %}
+                        {% if size_price['size'] == 'small' %}
+                            <li>NZ${{ size_price['price'] }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
