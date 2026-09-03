@@ -1,61 +1,67 @@
 {
     "Classic Latte": {
+        "descriptions": "",
         "stock": 100,
-        "image": "/STATIC/IMAGES/Classic Latte.png",
+        "image": "/static/images/Classic Latte.png",
         "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
+            {"size": "small", "price": "6"}, 
+            {"size": "medium", "price": "8"},
+            {"size": "large", "price": "10"}
         ]
     },
 
     "Taro Latte": {
+        "descriptions": "",
         "stock": 100,
-        "image": "/STATIC/IMAGES/Caramel Latte.png",
+        "image": "/static/images/Taro Latte.png",
         "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
+            {"size": "small", "price": "6"}, 
+            {"size": "medium", "price": "8"},
+            {"size": "large", "price": "10"}
         ]
     },
 
     "Matcha Latte": {
+        "descriptions": "",
         "stock": 100,
-        "image": "/STATIC/IMAGES/Matcha Latte.png",
+        "image": "/static/images/Matcha Latte.png",
         "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
+            {"size": "small", "price": "6"}, 
+            {"size": "medium", "price": "8"},
+            {"size": "large", "price": "10"}
         ]        
     },
 
     "Caramel Latte": {
+        "descriptions": "",
         "stock": 100,
-        "image": "/STATIC/IMAGES/Hazelnut Latte.png",
+        "image": "/static/images/Caramel-Latte.png",
         "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
+            {"size": "small", "price": "6"}, 
+            {"size": "medium", "price": "8"},
+            {"size": "large", "price": "10"}
         ]
     },
 
     "Mocha Latte": {
+        "descriptions": "",
         "stock": 100,
-        "image": "/STATIC/IMAGES/Mocha Latte.png",
+        "image": "/static/images/Mocha Latte.png",
         "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
+            {"size": "small", "price": "6"}, 
+            {"size": "medium", "price": "8"},
+            {"size": "large", "price": "10"}
         ]
     },
 
     "Chocolate Latte": {
+        "descriptions": "",
         "stock": 100,
-        "image": "/STATIC/IMAGES/Chocolate Latte.png",
+        "image": "/static/images/Chocolate Latte.png",
         "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
+            {"size": "small", "price": "6"}, 
+            {"size": "medium", "price": "8"},
+            {"size": "large", "price": "10"}
         ]
     }
 }

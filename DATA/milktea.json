@@ -1,61 +1,67 @@
 {
     "Classic Milk Tea": {
+        "descriptions": "hello",
         "stock": 100,
-        "image": "/STATIC/IMAGES/Classic Milk Tea.png",
+        "image": "/static/images/Classic Milk Tea.png",
         "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
+            {"size": "small", "price": "7"}, 
+            {"size": "medium", "price": "9"},
+            {"size": "large", "price": "11"}
         ]
     },
 
     "Taro Milk Tea": {
+        "descriptions": "",
         "stock": 100,
-        "image": "/STATIC/IMAGES/Taro Milk Tea.png",
+        "image": "/static/images/Taro Milk Tea.png",
         "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
+            {"size": "small", "price": "7"}, 
+            {"size": "medium", "price": "9"},
+            {"size": "large", "price": "11"}
         ]
     },
 
     "Matcha Milk Tea": {
+        "descriptions": "",
         "stock": 100,
-        "image": "/STATIC/IMAGES/Matcha Milk Tea.png",
+        "image": "/static/images/Matcha Milk Tea.png",
         "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
+            {"size": "small", "price": "7"}, 
+            {"size": "medium", "price": "9"},
+            {"size": "large", "price": "11"}
         ]
     },
 
     "Thai Milk Tea": {
+        "descriptions": "",
         "stock": 100,
-        "image": "/STATIC/IMAGES/Thai Milk Tea.png",
+        "image": "/static/images/Thai Milk Tea.png",
         "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
+            {"size": "small", "price": "7"}, 
+            {"size": "medium", "price": "9"},
+            {"size": "large", "price": "11"}
         ]
     },
 
     "Cookies & Cream Milk Tea": {
+        "descriptions": "",
         "stock": 100,
-        "image": "/STATIC/IMAGES/Cookies & Cream Milk Tea.png",
+        "image": "/static/images/Cookies & Cream Milk Tea.png",
         "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
+            {"size": "small", "price": "7"}, 
+            {"size": "medium", "price": "9"},
+            {"size": "large", "price": "11"}
         ]
     },
 
     "Chocolate Milk Tea": {
+        "descriptions": "",
         "stock": 100,
-        "image": "/STATIC/IMAGES/Chocolate Milk Tea.png",
+        "image": "/static/images/Chocolate Milk Tea.png",
         "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
+            {"size": "small", "price": "7"}, 
+            {"size": "medium", "price": "9"},
+            {"size": "large", "price": "11"}
         ]
     }
 }
