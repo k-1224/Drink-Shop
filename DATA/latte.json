@@ -1,6 +1,6 @@
 {
     "Classic Latte": {
-        "descriptions": "",
+        "descriptions": "a smooth, milky espresso drink made with one part espresso and roughly two to three parts steamed milk, finished with a thin layer of microfoam on top.",
         "stock": 100,
         "image": "/static/images/Classic Latte.png",
         "size_prices": [
@@ -11,7 +11,7 @@
     },
 
     "Taro Latte": {
-        "descriptions": "",
+        "descriptions": "a creamy, caffeine-free pastel purple drink made by blending cooked, mashed taro root or taro powder with milk and a sweetener. ",
         "stock": 100,
         "image": "/static/images/Taro Latte.png",
         "size_prices": [
@@ -22,7 +22,7 @@
     },
 
     "Matcha Latte": {
-        "descriptions": "",
+        "descriptions": "a creamy, vibrant green drink made by whisking finely ground green tea powder with hot water and combining it with hot or iced milk.",
         "stock": 100,
         "image": "/static/images/Matcha Latte.png",
         "size_prices": [
@@ -33,7 +33,7 @@
     },
 
     "Caramel Latte": {
-        "descriptions": "",
+        "descriptions": "a sweet, creamy coffee drink made with espresso, steamed milk, and rich caramel syrup or sauce.",
         "stock": 100,
         "image": "/static/images/Caramel-Latte.png",
         "size_prices": [
@@ -44,7 +44,7 @@
     },
 
     "Mocha Latte": {
-        "descriptions": "",
+        "descriptions": "a rich espresso drink made with steamed milk and chocolate syrup, powder, or melted chocolate.",
         "stock": 100,
         "image": "/static/images/Mocha Latte.png",
         "size_prices": [
@@ -55,7 +55,7 @@
     },
 
     "Chocolate Latte": {
-        "descriptions": "",
+        "descriptions": "a rich, creamy coffee drink made with espresso, steamed milk, and melted chocolate or chocolate syrup.",
         "stock": 100,
         "image": "/static/images/Chocolate Latte.png",
         "size_prices": [

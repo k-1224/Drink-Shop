@@ -1,6 +1,6 @@
 {
     "Classic Milk Tea": {
-        "descriptions": "hello",
+        "descriptions": "a sweet, creamy, and refreshing tea-based drink made by combining strong black tea, milk, sweetener, and chewy tapioca pearls. ",
         "stock": 100,
         "image": "/static/images/Classic Milk Tea.png",
         "size_prices": [
@@ -11,7 +11,7 @@
     },
 
     "Taro Milk Tea": {
-        "descriptions": "",
+        "descriptions": "a sweet, creamy bubble tea drink with a distinctive lavender-purple color and a flavor often compared to a mix of vanilla, sweet potato, and nutty cookies and cream.",
         "stock": 100,
         "image": "/static/images/Taro Milk Tea.png",
         "size_prices": [
@@ -22,7 +22,7 @@
     },
 
     "Matcha Milk Tea": {
-        "descriptions": "",
+        "descriptions": "a creamy, sweet, and earthy beverage made by combining whisked Japanese green tea powder with milk and optional chewy tapioca pearls.",
         "stock": 100,
         "image": "/static/images/Matcha Milk Tea.png",
         "size_prices": [
@@ -33,7 +33,7 @@
     },
 
     "Thai Milk Tea": {
-        "descriptions": "",
+        "descriptions": "a sweet, creamy, and spiced iced tea made from strongly brewed black tea, condensed milk, and spices. ",
         "stock": 100,
         "image": "/static/images/Thai Milk Tea.png",
         "size_prices": [
@@ -44,7 +44,7 @@
     },
 
     "Cookies & Cream Milk Tea": {
-        "descriptions": "",
+        "descriptions": "a sweet, dessert-style bubble tea made by blending a strong black tea base and milk with crushed chocolate sandwich cookies like Oreos.",
         "stock": 100,
         "image": "/static/images/Cookies & Cream Milk Tea.png",
         "size_prices": [
@@ -55,7 +55,7 @@
     },
 
     "Chocolate Milk Tea": {
-        "descriptions": "",
+        "descriptions": "a sweet, creamy beverage that combines rich cocoa or chocolate flavor with brewed tea and milk.",
         "stock": 100,
         "image": "/static/images/Chocolate Milk Tea.png",
         "size_prices": [
