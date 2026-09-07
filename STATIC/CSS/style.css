@@ -86,4 +86,34 @@ footer {
   background-color: #7EA172;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
+
+.footer-first {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.footer-webtitle {
+  padding-left: 40px;
+}
+
+.footer-question {
+  padding-right: 40px;
+}
+
+.footer-first ul {
+  list-style: none;
+}
+
+hr {
+  background-color: blue;
+}
+
+.second-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
