@@ -7,14 +7,14 @@
 #502419 - Espresso 
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Gravitas+One&family=Jaro:opsz@6..72&family=Mouse+Memoirs&family=Oi&family=Quicksand:wght@300..700&family=SN+Pro:ital,wght@0,200..900;1,200..900&family=Sekuya&family=Short+Stack&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Mouse+Memoirs&family=Oi&family=Quicksand:wght@300..700&display=swap');
 :root {
   --base-color: #FCF7F8;
   --text-color: #0B2027;
   --accent-color: #5BC3EB;
   --cta-color: #502419;
-  --primary-color: #7EA172; 
+  /* --primary-color: #7EA172;  */
+  --primary-color: #ebebde;
 }
 
 
@@ -27,10 +27,23 @@ header {
   display: flex;
   height: 40px;
   background-color: var(--accent-color);
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
+header h2 {
+  text-decoration: none;
+  font-family: "DynaPuff", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 1200;
+  font-style: bold;
+  font-size: 2em;
+}
+
+header a {
+  text-decoration: none;
+  color: var(--base-color);
+}
 
 
 nav {
@@ -41,7 +54,23 @@ nav {
 nav a {
   text-decoration: none;
   margin: 0 35px;
+  color: var(--primary-color);
+  font-family: "DynaPuff", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 1.2em;
 }
+
+
+.material-symbols-outlined {
+  color: white;
+}
+
+.nav-icon span {
+  margin: 0 10px;
+}
+
 
 button {
   background-color: #5BC3EB;

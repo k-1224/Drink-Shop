@@ -5,15 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> {% block title %} Nomolicious {% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/drinks.css') }}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=shopping_bag,account_circle" />
 </head>
 <body>
   <header> 
+    <h2><a href="{{ url_for('index') }}">Nomolicious</a></h2>
     <nav>
       <a href="{{ url_for('index')}}">Home</a>
       <a href="{{ url_for('menu')}}">Menu</a>
       <a href="{{ url_for('order_history')}}">Order History</a>
       <a href="{{ url_for('contact')}}">Contact Us</a>
     </nav>
+    <div class="nav-icon">
+      <span class="material-symbols-outlined">account_circle</span>
+      <span class="material-symbols-outlined">shopping_bag</span>
+    </div>
   </header>
   <main>
     {% block content %} {% endblock %}
