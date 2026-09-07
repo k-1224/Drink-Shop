@@ -27,7 +27,6 @@ img {
     border: 2px black solid;
     justify-content: center;
     align-items: center;
-
     overflow: hidden;
     aspect-ratio: 2 / 3;
 
@@ -42,9 +41,38 @@ img {
     align-items: center;
 }
 
+.milktea-name {
+    font-family: "Mouse Memoirs", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.6em;
+    line-height: 1.6em;
+}
+
+.milktea-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-size: 0.9em;
+    color:#606060;
+}
+
 .milktea-sizes {
     list-style: none;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    color:#606060;
+    padding-top: 20px;
 }   
+
 
 footer {
     position:sticky;
