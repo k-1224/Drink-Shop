@@ -1,0 +1,60 @@
+/* Propose 1 */
+/*
+#FCF7F8 - Snow
+#0B2027 - Ink Black
+#5BC3EB - Sky Aqua
+#7EA172 - Sage Green
+#502419 - Espresso 
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Gravitas+One&family=Jaro:opsz@6..72&family=Mouse+Memoirs&family=Oi&family=Quicksand:wght@300..700&family=SN+Pro:ital,wght@0,200..900;1,200..900&family=Sekuya&family=Short+Stack&display=swap');
+
+:root {
+  --base-color: #FCF7F8;
+  --text-color: #0B2027;
+  --accent-color: #5BC3EB;
+  --cta-color: #502419;
+  --primary-color: #7EA172; 
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  height: 40px;
+  background-color: var(--accent-color);
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+nav {
+  display: flex;
+  text-align: center;
+}
+
+nav a {
+  text-decoration: none;
+  margin: 0 35px;
+}
+
+button {
+  background-color: #5BC3EB;
+}
+
+main {
+  background-color: #FCF7F8;
+  height: 100vh;
+}
+
+
+footer {
+  background-color: #7EA172;
+  display: flex;
+  justify-content: center;
+}
