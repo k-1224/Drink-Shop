@@ -11,12 +11,13 @@
 :root {
   --base-color: #FCF7F8;
   /* --base-background: #0B2027; */
-  --base-background: #636B61;
+  --secondary-background: #636B61;
   --accent-color: #5BC3EB;
   --cta-color: #502419;
   /* --primary-color: #7EA172;  */
   --primary-color: #ebebde;
   --nav-bg-color: #F4E4D5;
+  --primary-background: #FCF7F8;
 }
 
 
@@ -25,12 +26,15 @@
   padding: 0;
 }
 
+
+
 header {
   display: flex;
   height: 40px;
-  background-color: var(--base-background);
-  justify-content: space-around;
+  background-color: var(--secondary-background);
+  justify-content: space-between;
   align-items: center;
+  padding: 0 40px;
 }
 
 header h2 {
@@ -79,15 +83,18 @@ button {
 }
 
 body {
-  height: 100px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
-  background-color: var(--base-color);
+  background-color: var(--primary-background);
+  flex: 1;
 }
 
 footer {
-  background-color: var(--base-background);
+  background-color: var(--secondary-background);
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -164,3 +171,18 @@ footer li {
   margin: 20px 0; 
 }
 
+
+/* INDEX PAGE */
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+  
+}
+
+img {
+  width: 100vh;
+  height: 100vh
+}
