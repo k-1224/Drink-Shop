@@ -10,11 +10,13 @@
 @import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Mouse+Memoirs&family=Oi&family=Quicksand:wght@300..700&display=swap');
 :root {
   --base-color: #FCF7F8;
-  --text-color: #0B2027;
+  /* --base-background: #0B2027; */
+  --base-background: #636B61;
   --accent-color: #5BC3EB;
   --cta-color: #502419;
   /* --primary-color: #7EA172;  */
   --primary-color: #ebebde;
+  --nav-bg-color: #F4E4D5;
 }
 
 
@@ -26,7 +28,7 @@
 header {
   display: flex;
   height: 40px;
-  background-color: var(--accent-color);
+  background-color: var(--base-background);
   justify-content: space-around;
   align-items: center;
 }
@@ -76,17 +78,20 @@ button {
   background-color: #5BC3EB;
 }
 
-main {
-  background-color: #FCF7F8;
-  height: 100vh;
+body {
+  height: 100px;
 }
 
+main {
+  background-color: var(--base-color);
+}
 
 footer {
-  background-color: #7EA172;
+  background-color: var(--base-background);
   display: flex;
   justify-content: center;
   flex-direction: column;
+  font-family: "Quicksand", system-ui;
 }
 
 .footer-first {
@@ -107,8 +112,19 @@ footer {
   list-style: none;
 }
 
-hr {
-  background-color: blue;
+footer h1,
+footer h2,
+footer p,
+footer a {
+  color: var(--base-color);
+}
+
+.footer-question input {
+  padding: 6px;
+}
+
+.footer-question button {
+  padding: 6px 12px;
 }
 
 .second-footer {
