@@ -91,22 +91,37 @@ footer {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  font-family: "Quicksand", system-ui;
+  font-family: "DynaPuff", system-ui;
+}
+
+.footer-first li,
+  .footer-first p {
+  font-family: "Quicksand", sans-serif;
 }
 
 .footer-first {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
+  margin: 20px 0;
 }
 
 .footer-webtitle {
   padding-left: 40px;
 }
 
-.footer-question {
-  padding-right: 40px;
+.footer-webtitle p {
+  margin-bottom: 10px;
 }
+
+.footer-pages a {
+  text-decoration: none;
+}
+
+.footer-pages a:hover{
+  text-decoration: underline;
+}
+
 
 .footer-first ul {
   list-style: none;
@@ -115,21 +130,37 @@ footer {
 footer h1,
 footer h2,
 footer p,
-footer a {
+footer a,
+footer li {
   color: var(--base-color);
+}
+
+.footer-question {
+  padding-right: 40px;
 }
 
 .footer-question input {
   padding: 6px;
+  border: none;
+  border-radius: 6px;
+  font-family: "Quicksand", system-ui;
+  font-size: 0.9em;
 }
 
 .footer-question button {
   padding: 6px 12px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: none;
+  font-family: "Quicksand", system-ui;
+  cursor: pointer;
+  color: var(--base-color);
 }
 
 .second-footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 20px 0; 
 }
 
