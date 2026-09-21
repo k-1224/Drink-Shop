@@ -177,13 +177,13 @@ footer li {
 
 
 /* INDEX PAGE */
-
+  /* HERO SECTION */
 img {
   max-width: 100%;
   display: block;
 }
 
-.hero-container {
+.hero-section {
   display: flex;
   justify-content: space-between;
   gap: 40px;
@@ -257,4 +257,70 @@ img {
   width: 100%;
   max-width: 800px;
   min-height: 300px;
+}
+
+  /* FEATURED SECTION */
+
+.featured-cards-section {
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.featured-cards h2 {
+  font-family: "DynaPuff", system-ui;
+  color: var(--primary-color);
+  font-size: 2em;
+  margin-bottom: 40px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.drink-card {
+  background-color: var(--secondary-background);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.drink-card img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.drink-card h3 {
+  font-family: "DynaPuff", system-ui;
+  color: var(--primary-color);
+  font-size: 1.3em;
+  margin-bottom: 8px;
+}
+
+.drink-card p {
+  font-family: "Quicksand", sans-serif;
+  color: var(--primary-color);
+  font-size: 0.95em;
+  margin-bottom: 16px;
+}
+
+.card-link {
+  text-decoration: none;
+  color: var(--base-color);
+  background-color: var(--accent-color);
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
+  font-size: 0.9em;
 }
