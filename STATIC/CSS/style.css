@@ -266,7 +266,7 @@ img {
   text-align: center;
 }
 
-.featured-cards h2 {
+.featured-cards-section h2 {
   font-family: "DynaPuff", system-ui;
   color: var(--primary-color);
   font-size: 2em;
