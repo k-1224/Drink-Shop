@@ -324,3 +324,44 @@ img {
   font-weight: 600;
   font-size: 0.9em;
 }
+
+  /* ABOUT SECTION */
+
+.about-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 40px 20px;
+  min-height: 40vh
+}
+
+.about-text {
+  flex: 1;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-text h1 {
+  margin-bottom: 20px;
+  font-size: 3.6em;
+  font-family: "DynaPuff", system-ui;
+}
+
+.about-text p {
+  font-family: "Quicksand", sans-serif;
+  margin-top: 30px;
+}
+
+.about-image {
+  flex: 1;
+  margin-right: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 800px;
+  min-height: 300px;
+}
