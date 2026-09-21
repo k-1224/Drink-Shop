@@ -3,15 +3,22 @@
 {% block title %}Nomolicious {% endblock %}
 
 {% block content %}
-<div class="hero">
+
+<div class="hero-container">
     <div class="hero-text">
         <h2>I love drinking</h2>
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus quasi est corporis illum maiores dolorem deleniti numquam incidunt officia. Quos maiores commodi, excepturi magnam atque saepe odio vitae omnis assumenda.</p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('menu')}}" class="btn-primary">Explore Drinks</a>
+            <a href="{{ url_for('menu')}}" class="btn-secondary">Order Now</a>
+        </div>
     </div>
     <div class="hero-image">
-        <img src="/static/images/home banner.png" alt="banner-img">
+        <img src="/static/images/restaurant-bg.jpg" alt="banner-img">
     </div>
 </div>
+<hr>
+
 
 
 
