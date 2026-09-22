@@ -4,58 +4,97 @@
 
 {% block content %}
 
-<div class="hero-section">
-    <div class="hero-text">
-        <h2>I love drinking</h2>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus quasi est corporis illum maiores dolorem deleniti numquam incidunt officia. Quos maiores commodi, excepturi magnam atque saepe odio vitae omnis assumenda.</p>
-        <div class="hero-buttons">
-            <a href="{{ url_for('menu')}}" class="btn-primary">Explore Drinks</a>
-            <a href="{{ url_for('menu')}}" class="btn-secondary">Order Now</a>
+    <div class="hero-section">
+        <div class="hero-text">
+            <h2>I love drinking</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus quasi est corporis illum maiores dolorem deleniti numquam incidunt officia. Quos maiores commodi, excepturi magnam atque saepe odio vitae omnis assumenda.</p>
+            <div class="hero-buttons">
+                <a href="{{ url_for('menu')}}" class="btn-primary">Explore Drinks</a>
+                <a href="{{ url_for('menu')}}" class="btn-secondary">Order Now</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="/static/images/restaurant-bg.jpg" alt="banner-img">
         </div>
     </div>
-    <div class="hero-image">
-        <img src="/static/images/restaurant-bg.jpg" alt="banner-img">
-    </div>
-</div>
-<hr>
-<div class="featured-cards-section">
-    <h2>Our Drinks</h2>
-    <div class="cards-grid">
-        <div class="drink-card">
-            <img src="/static/images/Classic Latte.png" alt="Latte">
-            <h3>Latte</h3>
-            <p>Smooth, creamy espresso-based drinks made just how you like them.</p>
-            <a href="{{ url_for('menu', category='latte') }}" class="card-link">View menu</a>
-        </div>
-        <div class="drink-card">
-            <img src="/static/images/Matcha Milk Tea.png" alt="Tea">
-            <h3>Tea</h3>
-            <p>Classic brewed teas, hot or iced, with milk options available.</p>
-            <a href="{{ url_for('menu', category='tea') }}" class="card-link">View menu</a>
-        </div>
-        <div class="drink-card">
-            <img src="/static/images/Fruit tea.png" alt="Fruit Tea">
-            <h3>Fruit Tea</h3>
-            <p>Refreshing fruit-infused teas, perfect for a light, fruity pick-me-up.</p>
-            <a href="{{ url_for('menu', category='fruit-tea') }}" class="card-link">View menu</a>
+    <hr>
+    <div class="featured-cards-section">
+        <h2>Our Drinks</h2>
+        <div class="cards-grid">
+            <div class="drink-card">
+                <img src="/static/images/Classic Latte.png" alt="Latte">
+                <h3>Latte</h3>
+                <p>Smooth, creamy espresso-based drinks made just how you like them.</p>
+                <a href="{{ url_for('menu', category='latte') }}" class="card-link">View menu</a>
+            </div>
+            <div class="drink-card">
+                <img src="/static/images/Matcha Milk Tea.png" alt="Tea">
+                <h3>Tea</h3>
+                <p>Classic brewed teas, hot or iced, with milk options available.</p>
+                <a href="{{ url_for('menu', category='tea') }}" class="card-link">View menu</a>
+            </div>
+            <div class="drink-card">
+                <img src="/static/images/Fruit tea.png" alt="Fruit Tea">
+                <h3>Fruit Tea</h3>
+                <p>Refreshing fruit-infused teas, perfect for a light, fruity pick-me-up.</p>
+                <a href="{{ url_for('menu', category='fruit-tea') }}" class="card-link">View menu</a>
+            </div>
         </div>
     </div>
-</div>
-<hr>
-<div class="about-section">
-    <div class="about-text">
-        <h1>About Nomolicious</h1>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos, ipsa eum voluptate consequatur omnis officiis tenetur earum tempora! Sapiente dolorem distinctio quod ea. Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus excepturi saepe, libero nam ut repellendus nulla quo explicabo corporis perspiciatis accusamus facere, distinctio, perferendis veritatis? Suscipit corporis magni asperiores ullam? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error, magnam. Qui, deserunt impedit quis quas ipsa aliquid iusto cupiditate eum similique atque itaque sint eveniet adipisci minima, vero consequuntur culpa? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi hic, fugit, praesentium perferendis, eligendi maiores eos pariatur id illum ullam consectetur officia consequatur qui sit ipsum corporis harum minima placeat. </p>
+    <hr>
+    <div class="about-section">
+        <div class="about-text">
+            <h1>About Nomolicious</h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos, ipsa eum voluptate consequatur omnis officiis tenetur earum tempora! Sapiente dolorem distinctio quod ea. Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus excepturi saepe, libero nam ut repellendus nulla quo explicabo corporis perspiciatis accusamus facere, distinctio, perferendis veritatis? Suscipit corporis magni asperiores ullam? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error, magnam. Qui, deserunt impedit quis quas ipsa aliquid iusto cupiditate eum similique atque itaque sint eveniet adipisci minima, vero consequuntur culpa? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi hic, fugit, praesentium perferendis, eligendi maiores eos pariatur id illum ullam consectetur officia consequatur qui sit ipsum corporis harum minima placeat. </p>
+        </div>
+        <div class="about-image">
+                <img src="/static/images/playful bg.png" alt="Nomolicious Playful Background">
+        </div>
     </div>
-    <div class="about-image">
-            <img src="/static/images/playful bg.png" alt="Nomolicious Playful Background">
-    </div>
-</div>
-<hr>
-<div class="">
-</div>
+    <hr>
+    <div class="faq-section">
+        <button class="accordion">What drinks does Nomolicious offer?</button>
+        <div class="panel">
+        <p>Nomolicious offers a variety of non-alcoholic drinks, including milk teas, lattes, and fruit teas. There are also different flavours and variations available, including several matcha options.</p>
+        </div>
 
+        <button class="accordion">Can I customize my drink?</button>
+        <div class="panel">
+        <p>Yes! When you select a drink, you can customise it before adding it to your cart. Depending on the drink, you can choose options such as size and additional toppings like extra boba or creamy puff.</p>
+        </div>
 
+        <button class="accordion">How can I contact Nomolicious?</button>
+        <div class="panel">
+        <p>You can visit the Contact Us page and fill out the contact form with your name, email address, and message. Click “Submit” once you have completed the required information.</p>
+        </div>
+
+        <button class="accordion">How do I place an order?</button>
+        <div class="panel">
+        <p>After adding your drinks to the cart, click “View Order.” On the Order page, review your items and click “Checkout.” You will then need to provide your email, delivery address or location, and select a payment method before completing your order.</p>
+        </div>
+
+        <button class="accordion">How can I check my recent orders?</button>
+        <div class="panel">
+        <p>You can click the account icon in the navigation bar to view information about your recent orders, including the order details and expected arrival information.</p>
+        </div>
+    </div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+</script>
 
 
 {% endblock %}

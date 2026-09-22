@@ -16,6 +16,11 @@
   --primary-color: #0B2027;
   --nav-bg-color: #F4E4D5;
   --primary-background: #FCF7F8;
+  --extra-color: #B1C18E;
+
+  --font-1: "DynaPuff", system-ui;
+  --font-2: "Quicksand", sans-serif;
+  --font-3: "Mouse Memoirs", sans-serif;
 }
 
 
@@ -37,7 +42,7 @@ header {
 
 header h2 {
   text-decoration: none;
-  font-family: "DynaPuff", system-ui;
+  font-family: var(--font-1);
   font-optical-sizing: auto;
   font-weight: 1200;
   font-style: bold;
@@ -60,7 +65,7 @@ nav a {
   text-decoration: none;
   margin: 0 35px;
   color: var(--primary-color);
-  font-family: "DynaPuff", system-ui;
+  font-family: var(--font-1);
   font-optical-sizing: auto;
   font-weight: 200;
   font-style: normal;
@@ -74,11 +79,6 @@ nav a {
 
 .nav-icon span {
   margin: 0 10px;
-}
-
-
-button {
-  background-color: #5BC3EB;
 }
 
 /* ------------------------------------------------------- */
@@ -101,12 +101,12 @@ footer {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  font-family: "DynaPuff", system-ui;
+  font-family: var(--font-1);
 }
 
 .footer-first li,
   .footer-first p {
-  font-family: "Quicksand", sans-serif;
+  font-family: var(--font-2);
 }
 
 .footer-first {
@@ -153,7 +153,7 @@ footer li {
   padding: 6px;
   border: none;
   border-radius: 6px;
-  font-family: "Quicksand", system-ui;
+  font-family: var(--font-2);
   font-size: 0.9em;
 }
 
@@ -162,7 +162,7 @@ footer li {
   margin-top: 6px;
   border-radius: 6px;
   border: none;
-  font-family: "Quicksand", system-ui;
+  font-family: var(--font-2);
   cursor: pointer;
   background-color: var(--accent-color);
   color: var(--primary-color);
@@ -201,11 +201,11 @@ img {
 .hero-text h2 {
   margin-bottom: 20px;
   font-size: 3.6em;
-  font-family: "DynaPuff", system-ui;
+  font-family: var(--font-1);
 }
 
 .hero-text p {
-  font-family: "Quicksand", sans-serif;
+  font-family: var(--font-2);
   margin-top: 30px;
 }
 
@@ -220,7 +220,7 @@ img {
   padding: 12px 28px;
   border-radius: 8px;
   text-decoration: none;
-  font-family: "Quicksand", sans-serif;
+  font-family: var(--font-2);
   font-weight: 600;
   font-size: 1em;
   transition: background-color 0.2s ease, color 0.2s ease;
@@ -267,7 +267,7 @@ img {
 }
 
 .featured-cards-section h2 {
-  font-family: "DynaPuff", system-ui;
+  font-family: var(--font-1);
   color: var(--primary-color);
   font-size: 2em;
   margin-bottom: 40px;
@@ -301,14 +301,14 @@ img {
 }
 
 .drink-card h3 {
-  font-family: "DynaPuff", system-ui;
+  font-family: var(--font-1);
   color: var(--primary-color);
   font-size: 1.3em;
   margin-bottom: 8px;
 }
 
 .drink-card p {
-  font-family: "Quicksand", sans-serif;
+  font-family: var(--font-2);
   color: var(--primary-color);
   font-size: 0.95em;
   margin-bottom: 16px;
@@ -320,7 +320,7 @@ img {
   background-color: var(--accent-color);
   padding: 8px 20px;
   border-radius: 8px;
-  font-family: "Quicksand", sans-serif;
+  font-family: var(--font-2);
   font-weight: 600;
   font-size: 0.9em;
 }
@@ -345,11 +345,11 @@ img {
 .about-text h1 {
   margin-bottom: 20px;
   font-size: 3.6em;
-  font-family: "DynaPuff", system-ui;
+  font-family: var(--font-1);
 }
 
 .about-text p {
-  font-family: "Quicksand", sans-serif;
+  font-family: var(--font-2);
   margin-top: 30px;
 }
 
@@ -364,4 +364,60 @@ img {
   width: 100%;
   max-width: 800px;
   min-height: 300px;
+}
+
+  /* FAQ SECTION */
+
+.faq-section {
+  display: flex;
+  margin: 35px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.accordion {
+  background-color: var(--accent-color);
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  margin: 10px 0, 15px 0;
+  font-family: var(--font-3);
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.active, .accordion:hover {
+  background-color: #eea35c;
+}
+
+
+.panel {
+  padding: 0 18px;
+  background-color: #eea35c;
+  opacity: 0.5;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  margin-bottom: 20px;
+}
+
+
+.accordion:after {
+  content: '\02795';
+  font-size: 13px;
+  color: #777;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; 
 }
