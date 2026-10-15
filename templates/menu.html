@@ -3,7 +3,7 @@
 {% block title %}Nomolicious {% endblock %}
 
 {%block content %} 
-
+<h2>MILK TEA</h2>
 <div class="milk_tea-list">
     {% for milk_tea, details in milk_teas.items() %}
         <div class="milktea-card">
@@ -13,6 +13,61 @@
             </div>
             <div class="milktea-name-desc">
                 <p class="milktea-name">{{ milk_tea }}</p>
+                <p class="milktea-desc">{{ details['descriptions'] }}</p>
+                <div class="milktea-price-row">
+                    <ul class="milktea-sizes">
+                        {% for size_price in details['size_prices'] %}
+                            {% if size_price['size'] == 'small' %}
+                                <li>NZ${{ size_price['price'] }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    <button type="button" popovertarget="more-info-milk-{{ loop.index }}" id="plus-button">
+                    <span class="material-symbols-outlined">add</span>
+                    </button type=>
+
+                    <!-- POPOVER -->
+                    <form id="more-info-milk-{{ loop.index }}" popover class="drink-popover" action="{{ url_for('add_to_cart' ) }}" method="post">
+                        <h3>{{ milk_tea }}</h3>
+                        <p class="milktea-desc">{{ details['descriptions'] }}</p>
+                        <img src="{{ details['image'] }}">
+                            <input type="hidden" name="drink" value="{{ milk_tea }}">
+                        <label for="size">Size</label>
+                        <select name="size" id="size">
+                            {% for size_price in details['size_prices'] %}
+                                <option value="{{ size_price['size'] }}">
+                                    {{ size_price['size']|title }} - ${{ size_price['price'] }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <label for="quantity">Quantity</label>
+                        <input type="number" name="quantity" value="1" min="1" required>
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}    
+            </ul>
+        {% endif %}
+    {% endwith %}
+</div>
+
+<h2>LATTE</h2>
+<div class="milk_tea-list">
+    {% for latte, details in lattes.items() %}
+        <div class="milktea-card">
+            <div class="milktea-image">
+                <img src="{{ details['image'] }}">
+            </div>
+            <div class="milktea-name-desc">
+                <p class="milktea-name">{{ latte }}</p>
                 <p class="milktea-desc">{{ details['descriptions'] }}</p>
                 <ul class="milktea-sizes">
                     {% for size_price in details['size_prices'] %}
@@ -26,6 +81,7 @@
     {% endfor %}
 </div>
 
+<h2>LATTE</h2>
 <div class="milk_tea-list">
     {% for latte, details in lattes.items() %}
         <div class="milktea-card">

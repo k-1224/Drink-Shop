@@ -5,6 +5,24 @@
     padding: 0;
 }
 
+:root {
+  --base-color: #FCF7F8;
+  --secondary-background: #F4E4D5;
+  --accent-color: #D98E4A;  
+  --cta-color: #C1440E;     
+  --primary-color: #0B2027;
+  --nav-bg-color: #F4E4D5;
+  --primary-background: #FCF7F8;
+  --extra-color: #B1C18E;
+  --extra2-color: #f9f2f3;
+
+  --font-1: "DynaPuff", system-ui;
+  --font-2: "Quicksand", sans-serif;
+  --font-3: "Mouse Memoirs", sans-serif;
+}
+
+/* ITEM CARD */
+
 img {
     max-height: 100px;
     max-width: auto;
@@ -15,11 +33,11 @@ img {
     grid-template-columns: repeat(6, 1fr);  
     gap: 40px;
     padding: 20px;
-    border: 2px black solid;
     margin: 20px;
 }
 
 .milktea-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -29,16 +47,23 @@ img {
     align-items: center;
     overflow: hidden;
     aspect-ratio: 2 / 3;
-
 }
 
 .milktea-image {
     width: 100%;
-    overflow: hidden;
-    aspect-ratio: 4 / 3;
+    height: 220px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+}
+
+.milktea-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
 }
 
 .milktea-name {
@@ -130,3 +155,74 @@ footer {
     font-weight: bold;
     margin: 0;
 } */
+
+
+
+.milktea-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.milktea-sizes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.add-btn {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+    border-radius: 50%;
+    background-color: var(--cta-color);
+    color: var(--base-color);
+    cursor: pointer;
+}
+
+.add-btn .material-symbols-outlined {
+    color: inherit;
+    font-size: 24px;
+}
+
+
+/* ITEM POPOVER*/
+
+#plus-button {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--secondary-background);
+    border-radius: 50%;
+    background-color: var(--secondary-background);
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-top: 5px;
+
+    .material-symbols-outlined {
+     color: var(--primary-color)
+    }
+}
+
+.drink-popover {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px whitesmoke;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.drink-popover::backdrop {
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(1px);
+}
