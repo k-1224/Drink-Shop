@@ -17,6 +17,7 @@
   --nav-bg-color: #F4E4D5;
   --primary-background: #FCF7F8;
   --extra-color: #B1C18E;
+  --extra2-color: #f9f2f3;
 
   --font-1: "DynaPuff", system-ui;
   --font-2: "Quicksand", sans-serif;
@@ -75,11 +76,48 @@ nav a {
 
 .material-symbols-outlined {
   color: var(--primary-color);
+
 }
 
-.nav-icon span {
-  margin: 0 10px;
+/* ICONS */
+
+.nav-icon {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-self: end;
 }
+
+.nav-icon .material-symbols-outlined {
+  font-size: 30px;
+}
+
+#cart-icon {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+}
+
+.cart-item-count {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #D98E4A;
+  color: #FCF7F8;
+  border-radius: 9px;
+  font-family: var(--font-2);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
 
 /* ------------------------------------------------------- */
 
@@ -379,19 +417,19 @@ img {
   background-color: var(--accent-color);
   color: #444;
   cursor: pointer;
-  padding: 18px;
+  padding: 0 18px;
   width: 100%;
   text-align: left;
   border: none;
   outline: none;
   transition: 0.4s;
-  margin: 10px 0, 15px 0;
+  margin: 5px 0, 10px 0;
   font-family: var(--font-3);
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+  border: 2px solid #eea35c;
 }
 
 .active, .accordion:hover {
@@ -400,24 +438,34 @@ img {
 
 
 .panel {
-  padding: 0 18px;
-  background-color: #eea35c;
-  opacity: 0.5;
+  background-color: var(--secondary-background);
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   margin-bottom: 20px;
+  width: 100%;
+  
+}
+
+.panel p {
+  overflow: hidden;
+  padding: 20px;
+  font-family: var(--font-2);
+  border: 2px solid #eea35c;
 }
 
 
 .accordion:after {
-  content: '\02795';
-  font-size: 13px;
+  content: '\002B';
+  font-size: 1.8em;
   color: #777;
   float: right;
   margin-left: 5px;
+  color: var(--base-color);
 }
 
 .active:after {
-  content: "\2796"; 
+  content: "\2212"; 
+  color: var(--base-color);
 }
+
