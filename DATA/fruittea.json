@@ -1,61 +1,67 @@
 {
     "Mango Tea": {
+        "descriptions": "Mango tea is a refreshing fruit tea made by blending brewed tea with sweet, tropical mango juice, purée, or syrup. It has a naturally fruity aroma, a bright golden-orange colour, and a delicious balance of sweetness and light tea flavours. Served over ice, it offers a smooth, juicy, and refreshing taste with a tropical twist, perfect for cooling down on a warm day. ",
         "stock": 100,
-        "image": "",
+        "image": "/static/images/Mango Tea.png",
         "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
+            {"size": "small", "price": "9"}, 
+            {"size": "medium", "price": "12"},
+            {"size": "large", "price": "15"}
         ]
     },
 
     "Lemon Tea": {
+        "descriptions": "Lemon tea is a refreshing fruit tea made by blending brewed tea with fresh lemon juice or lemon syrup. It offers a bright citrus aroma, a zesty tang, and a balanced combination of sweet and sour flavours. Served over ice, lemon tea delivers a crisp, light, and invigorating taste, making it a perfect choice for those who enjoy a refreshing drink with a citrusy twist. ",
         "stock": 100,
-        "image": "",
+        "image": "/static/images/Lemon Tea.png",
         "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
-        ]
-    },
-
-    "Strawberry Tea": {
-        "stock": 100,
-        "image": "",
-        "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
-        ]
-    }, 
-
-    "Pineapple Tea": {
-        "stock": 100,
-        "image": "",
-        "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
+            {"size": "small", "price": "9"}, 
+            {"size": "medium", "price": "12"},
+            {"size": "large", "price": "15"}
         ]
     },
 
     "Kiwi Tea": {
+        "descriptions": "Kiwi tea is a refreshing fruit tea made by blending brewed tea with sweet, tangy kiwi juice, purée, or syrup. It features a fresh, tropical aroma, a vibrant green colour, and a delightful balance of natural sweetness and zesty tartness. Served over ice, kiwi tea offers a crisp, juicy, and invigorating taste with a refreshing fruity twist, perfect for anyone who enjoys a bright and tangy drink.",
         "stock": 100,
-        "image": "",
+        "image": "/static/images/Kiwi Tea.png",
         "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
+            {"size": "small", "price": "9"}, 
+            {"size": "medium", "price": "12"},
+            {"size": "large", "price": "15"}
+        ]
+    }, 
+
+    "Pineapple Tea": {
+        "descriptions": "Pineapple tea is a refreshing fruit tea made by blending brewed tea with sweet, tangy pineapple juice, purée, or syrup. It features a tropical aroma, a bright golden-yellow colour, and a delicious balance of natural sweetness and citrusy tartness. Served over ice, pineapple tea offers a juicy, crisp, and invigorating taste with a tropical twist, perfect for cooling down on a warm day.",
+        "stock": 100,
+        "image": "/static/images/Pineapple Tea.png",
+        "size_prices": [
+            {"size": "small", "price": "9"}, 
+            {"size": "medium", "price": "12"},
+            {"size": "large", "price": "15"}
+        ]
+    },
+
+    "Strawberry Tea": {
+        "descriptions": "Strawberry tea is a refreshing fruit tea made by blending brewed tea with sweet strawberry juice, purée, or syrup. It features a delightful berry aroma, a vibrant red-pink colour, and a delicious balance of natural sweetness with a gentle fruity tang. Served over ice, strawberry tea offers a smooth, fruity, and refreshing taste, perfect for anyone who enjoys a sweet and refreshing drink with a fresh strawberry flavour",
+        "stock": 100,
+        "image": "/static/images/Strawberry Tea.png",
+        "size_prices": [
+            {"size": "small", "price": "9"}, 
+            {"size": "medium", "price": "12"},
+            {"size": "large", "price": "15"}
         ]
     },
 
     "Lynchee Tea": {
+        "descriptions": "Lychee tea is a refreshing fruit tea made by blending brewed tea with sweet, fragrant lychee juice, purée, or syrup. It features a delicate floral aroma, a light fruity flavour, and a delightful balance of natural sweetness with subtle tropical notes. Served over ice, lychee tea offers a smooth, crisp, and refreshing taste, making it a perfect choice for anyone who enjoys a sweet and fragrant drink with an exotic twist.",
         "stock": 100,
-        "image": "",
+        "image": "/static/images/Lychee Tea.png",
         "size_prices": [
-            {"size": "small", "price": ""}, 
-            {"size": "medium", "price": ""},
-            {"size": "large", "price": ""}
+            {"size": "small", "price": "9"}, 
+            {"size": "medium", "price": "12"},
+            {"size": "large", "price": "15"}
         ]
     }
 }

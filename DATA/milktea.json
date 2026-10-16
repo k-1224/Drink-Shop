@@ -4,9 +4,9 @@
         "stock": 100,
         "image": "/static/images/Classic Milk Tea.png",
         "size_prices": [
-            {"size": "small", "price": "7"}, 
-            {"size": "medium", "price": "9"},
-            {"size": "large", "price": "11"}
+            {"size": "small", "price": "9"}, 
+            {"size": "medium", "price": "12"},
+            {"size": "large", "price": "15"}
         ]
     },
 
@@ -15,9 +15,9 @@
         "stock": 100,
         "image": "/static/images/Taro Milk Tea.png",
         "size_prices": [
-            {"size": "small", "price": "7"}, 
-            {"size": "medium", "price": "9"},
-            {"size": "large", "price": "11"}
+            {"size": "small", "price": "9"}, 
+            {"size": "medium", "price": "12"},
+            {"size": "large", "price": "15"}
         ]
     },
 
@@ -26,9 +26,9 @@
         "stock": 100,
         "image": "/static/images/Matcha Milk Tea.png",
         "size_prices": [
-            {"size": "small", "price": "7"}, 
-            {"size": "medium", "price": "9"},
-            {"size": "large", "price": "11"}
+            {"size": "small", "price": "9"}, 
+            {"size": "medium", "price": "12"},
+            {"size": "large", "price": "15"}
         ]
     },
 
@@ -37,9 +37,9 @@
         "stock": 100,
         "image": "/static/images/Thai Milk Tea.png",
         "size_prices": [
-            {"size": "small", "price": "7"}, 
-            {"size": "medium", "price": "9"},
-            {"size": "large", "price": "11"}
+            {"size": "small", "price": "9"}, 
+            {"size": "medium", "price": "12"},
+            {"size": "large", "price": "15"}
         ]
     },
 
@@ -48,9 +48,9 @@
         "stock": 100,
         "image": "/static/images/Cookies & Cream Milk Tea.png",
         "size_prices": [
-            {"size": "small", "price": "7"}, 
-            {"size": "medium", "price": "9"},
-            {"size": "large", "price": "11"}
+            {"size": "small", "price": "9"}, 
+            {"size": "medium", "price": "12"},
+            {"size": "large", "price": "15"}
         ]
     },
 
@@ -59,9 +59,9 @@
         "stock": 100,
         "image": "/static/images/Chocolate Milk Tea.png",
         "size_prices": [
-            {"size": "small", "price": "7"}, 
-            {"size": "medium", "price": "9"},
-            {"size": "large", "price": "11"}
+            {"size": "small", "price": "9"}, 
+            {"size": "medium", "price": "12"},
+            {"size": "large", "price": "15"}
         ]
     }
 }
