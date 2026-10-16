@@ -24,7 +24,7 @@
                     </ul>
                     <button type="button" popovertarget="more-info-milk-{{ loop.index }}" id="plus-button">
                     <span class="material-symbols-outlined">add</span>
-                    </button type=>
+                    </button>
 
                     <!-- POPOVER -->
                     <form id="more-info-milk-{{ loop.index }}" popover class="drink-popover" action="{{ url_for('add_to_cart' ) }}" method="post">
@@ -69,35 +69,87 @@
             <div class="milktea-name-desc">
                 <p class="milktea-name">{{ latte }}</p>
                 <p class="milktea-desc">{{ details['descriptions'] }}</p>
-                <ul class="milktea-sizes">
-                    {% for size_price in details['size_prices'] %}
-                        {% if size_price['size'] == 'small' %}
-                            <li>NZ${{ size_price['price'] }}</li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
+                <div class="milktea-price-row">
+                    <ul class="milktea-sizes">
+                        {% for size_price in details['size_prices'] %}
+                            {% if size_price['size'] == 'small' %}
+                                <li>NZ${{ size_price['price'] }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    <button type="button" popovertarget="more-info-latte-{{ loop.index }}" id="plus-button">
+                        <span class="material-symbols-outlined">add</span>
+                    </button>
+                    <form id="more-info-latte-{{ loop.index }}" popover class="drink-popover" action="{{ url_for('add_to_cart') }}" method="post">
+                        <h3>{{ latte }}</h3>
+                        <p>{{ details['descriptions'] }}</p>
+                        <img src="{{ details['image'] }}">
+                        <input type="hidden" name="drink" value="{{ latte }}">
+                        <label for="latte-size-{{ loop.index }}">Size</label>
+                        <select name="size" id="latte-size-{{ loop.index }}">
+                            {% for size_price in details['size_prices'] %}
+                                <option value="{{ size_price['size'] }}">
+                                    {{ size_price['size']|title }} - NZ${{ size_price['price'] }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <label for="latte-quantity-{{ loop.index }}">Quantity</label>
+                        <input type="number" name="quantity" id="latte-quantity-{{ loop.index }}" value="1" min="1" required>
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                </div>
             </div>
         </div>
     {% endfor %}
 </div>
 
-<h2>LATTE</h2>
+
+<h2>FRUIT TEA</h2>
 <div class="milk_tea-list">
-    {% for latte, details in lattes.items() %}
+    {% for fruit_tea, details in fruit_teas.items() %}
         <div class="milktea-card">
             <div class="milktea-image">
                 <img src="{{ details['image'] }}">
             </div>
             <div class="milktea-name-desc">
-                <p class="milktea-name">{{ latte }}</p>
+                <p class="milktea-name">{{ fruit_tea }}</p>
                 <p class="milktea-desc">{{ details['descriptions'] }}</p>
-                <ul class="milktea-sizes">
-                    {% for size_price in details['size_prices'] %}
-                        {% if size_price['size'] == 'small' %}
-                            <li>NZ${{ size_price['price'] }}</li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
+
+                <div class="milktea-price-row">
+                    <ul class="milktea-sizes">
+                        {% for size_price in details['size_prices'] %}
+                            {% if size_price['size'] == 'small' %}
+                                <li>NZ${{ size_price['price'] }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    <button type="button"
+                            popovertarget="more-info-fruit-{{ loop.index }}"
+                            id="plus-button">
+                        <span class="material-symbols-outlined">add</span>
+                    </button>
+                    <form id="more-info-fruit-{{ loop.index }}"
+                          popover
+                          class="drink-popover"
+                          action="{{ url_for('add_to_cart') }}"
+                          method="post">
+                        <h3>{{ fruit_tea }}</h3>
+                        <p>{{ details['descriptions'] }}</p>
+                        <img src="{{ details['image'] }}">
+                        <input type="hidden" name="drink" value="{{ fruit_tea }}">
+                        <label for="fruit-size-{{ loop.index }}">Size</label>
+                        <select name="size" id="fruit-size-{{ loop.index }}">
+                            {% for size_price in details['size_prices'] %}
+                                <option value="{{ size_price['size'] }}">
+                                    {{ size_price['size']|title }} - NZ${{ size_price['price'] }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <label for="fruit-quantity-{{ loop.index }}">Quantity</label>
+                        <input type="number" name="quantity" id="fruit-quantity-{{ loop.index }}" value="1" min="1" required>
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                </div>
             </div>
         </div>
     {% endfor %}
