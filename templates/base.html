@@ -20,10 +20,15 @@
     </nav>
     <div class="nav-icon">
       <span class="material-symbols-outlined">account_circle</span>
-      <div id="cart-icon">
+    <button type=button id="cart-icon" href="#" popovertarget="popover-bag">
         <span class="material-symbols-outlined">shopping_bag</span>
-        <span class="cart-item-count"></span>
-      </div>
+        <span class="cart-item-count">0</span>
+    </button>
+
+<div id="popover-bag" popover>
+    <h2>Your Shopping Bag</h2>
+    <p>Your cart is empty.</p>
+</div>
     </div>
   </header>
   <main>

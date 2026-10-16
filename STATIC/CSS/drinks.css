@@ -226,3 +226,57 @@ footer {
     background: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(1px);
 }
+
+
+/* MINI-POPOVER BAG */
+
+#cart-icon {
+    border: none;
+    background-color: var(--secondary-background);
+    cursor: pointer;
+    anchor-name: --shopping-bag-icon;
+}
+
+#popover-bag {
+    position: absolute;
+    margin: 0;
+    inset: auto;
+    top: anchor(bottom);
+    right: anchor(right);
+    border: 0;
+    transform: translateX(40px);
+
+    position-anchor: --shopping-bag-icon;
+
+    margin-top: 12px;
+    margin-right: 0;
+
+    width: 280px;
+    padding: 20px;
+    box-sizing: border-box;
+
+    background-color: var(--base-color);
+    color: var(--primary-color);
+    border: 1px solid var(--secondary-background);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+
+    overflow: visible;
+    transform: translateX(40px);
+
+    :before {
+    content: "";
+    position: absolute;
+
+    bottom: 100%;
+    right: 45px;
+
+    width: 0;
+    height: 0;
+
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid var(--base-color);
+    }
+
+}
