@@ -22,13 +22,25 @@
       <span class="material-symbols-outlined">account_circle</span>
     <button type=button id="cart-icon" href="#" popovertarget="popover-bag">
         <span class="material-symbols-outlined">shopping_bag</span>
-        <span class="cart-item-count">0</span>
+        <span class="cart-item-count">{{ cart.values() | sum(attribute='quantity') if cart else 0 }}</span>
     </button>
-
-<div id="popover-bag" popover>
-    <h2>Your Shopping Bag</h2>
-    <p>Your cart is empty.</p>
-</div>
+    </div>
+    <div id="popover-bag" popover>
+        <h2>Your Shopping Bag</h2>
+        {% if cart %}
+            <ul>
+                {% for drink, details in cart.items() %}
+                    <li>
+                        {{ drink }}: {{ details['quantity'] }} x
+                        ${{ details['price'] }}
+                        = ${{ details['quantity'] * details['price'] }}
+                        <a href="{{ url_for('remove_from_cart', drink=drink) }}">[Remove]</a> 
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Your cart is empty</p>
+        {% endif %}
     </div>
   </header>
   <main>

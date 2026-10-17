@@ -57,9 +57,20 @@ def add_to_cart():
     flash(f"{quantity}{drink}(s) added to cart.")
     return redirect(url_for('menu'))
 
+@app.route("/remove_from_cart/<drink>")
+def remove_from_cart(drink):
+    cart = session.get('cart', {})
 
+    if drink in cart:
+        del cart[drink]
+        session['cart'] = cart
+        session.modified = True        
+        flash(f"Removed all {drink} from the cart.", "error")
 
+    else:
+        flash("Item not found in cart")   
 
+    return redirect(url_for('menu'))
 
 # ——— ROUTE ——— #
 
@@ -71,8 +82,11 @@ def index():
 @app.route("/menu")
 def menu(): 
     lattes, milk_teas, fruit_teas, addons = load_data()
+    cart = session.get('cart', {})
     
-    return render_template("menu.html", lattes=lattes, milk_teas=milk_teas, fruit_teas=fruit_teas, addons=addons)
+    return render_template("menu.html", lattes=lattes, milk_teas=milk_teas, fruit_teas=fruit_teas, addons=addons, cart=cart)
+
+    
 
 @app.route("/order_history")
 def order_history():
