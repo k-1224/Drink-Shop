@@ -21,11 +21,37 @@
   --font-3: "Mouse Memoirs", sans-serif;
 }
 
+/* CATEGORY TITLE */
+
+.title {
+    margin: 20px;
+    padding: 20px;
+    justify-self: center;
+    font-family: var(--font-1);
+    font-size: 2em;
+    color: #e3cab1
+}
+
+.title::before {
+    content: "──────────────────────────⪼";
+    margin-right: 5px;
+    color: var(--secondary-background)
+}
+
+.title:after {
+    content: "⪻──────────────────────────";
+    margin-left: 5px;
+    color:var(--secondary-background)
+}
+
+
 /* ITEM CARD */
 
 img {
-    max-height: 100px;
+    max-height: 200px;
     max-width: auto;
+    background-color: var(--nav-bg-color);
+    border-radius: 14px;
 }
 
 .milk_tea-list {
@@ -42,11 +68,12 @@ img {
     flex-direction: column;
     gap: 20px;
     padding: 10px;
-    border: 2px black solid;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    aspect-ratio: 2 / 3;
+    aspect-ratio: 2 / 3;    
+    border: 2px solid #e3cab1;
+    border-radius: 5%;
 }
 
 .milktea-image {
@@ -194,7 +221,7 @@ footer {
 
 /* ITEM POPOVER*/
 
-#plus-button {
+.plus-button {
     width: 40px;
     height: 40px;
     flex-shrink: 0;

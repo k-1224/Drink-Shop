@@ -3,13 +3,12 @@
 {% block title %}Nomolicious {% endblock %}
 
 {%block content %} 
-<h2>MILK TEA</h2>
+<h2 class="title">MILK TEA</h2>
 <div class="milk_tea-list">
     {% for milk_tea, details in milk_teas.items() %}
         <div class="milktea-card">
             <div class="milktea-image">
                 <img src="{{ details['image'] }}">
-                <hr>
             </div>
             <div class="milktea-name-desc">
                 <p class="milktea-name">{{ milk_tea }}</p>
@@ -22,7 +21,7 @@
                             {% endif %}
                         {% endfor %}
                     </ul>
-                    <button type="button" popovertarget="more-info-milk-{{ loop.index }}" id="plus-button">
+                    <button type="button" popovertarget="more-info-milk-{{ loop.index }}" class="plus-button">
                     <span class="material-symbols-outlined">add</span>
                     </button>
 
@@ -43,7 +42,7 @@
                         <label for="quantity">Quantity</label>
                         <input type="number" name="quantity" value="1" min="1" required>
                         <button type="submit">Add to Cart</button>
-                    </form>
+                    </form> 
                 </div>
             </div>
         </div>
@@ -59,7 +58,7 @@
     {% endwith %}
 </div>
 
-<h2>LATTE</h2>
+<h2 class="title">LATTE</h2>
 <div class="milk_tea-list">
     {% for latte, details in lattes.items() %}
         <div class="milktea-card">
@@ -77,7 +76,7 @@
                             {% endif %}
                         {% endfor %}
                     </ul>
-                    <button type="button" popovertarget="more-info-latte-{{ loop.index }}" id="plus-button">
+                    <button type="button" popovertarget="more-info-latte-{{ loop.index }}" class="plus-button">
                         <span class="material-symbols-outlined">add</span>
                     </button>
                     <form id="more-info-latte-{{ loop.index }}" popover class="drink-popover" action="{{ url_for('add_to_cart') }}" method="post">
@@ -104,7 +103,7 @@
 </div>
 
 
-<h2>FRUIT TEA</h2>
+<h2 class="title">FRUIT TEA</h2>
 <div class="milk_tea-list">
     {% for fruit_tea, details in fruit_teas.items() %}
         <div class="milktea-card">
@@ -125,7 +124,7 @@
                     </ul>
                     <button type="button"
                             popovertarget="more-info-fruit-{{ loop.index }}"
-                            id="plus-button">
+                            class="plus-button">
                         <span class="material-symbols-outlined">add</span>
                     </button>
                     <form id="more-info-fruit-{{ loop.index }}"
