@@ -30,7 +30,7 @@
   padding: 0;
 }
 
-
+/* ======= NAVIGATION BAR ======= */
 
 header {
   display: flex;
@@ -73,13 +73,12 @@ nav a {
   font-size: 1.2em;
 }
 
+/* ======= ICONS ======= */
 
 .material-symbols-outlined {
   color: var(--primary-color);
 
 }
-
-/* ICONS */
 
 .nav-icon {
   display: flex;
@@ -134,6 +133,7 @@ main {
 
 /* ------------------------------------------------------- */
 
+/* ======= FOOTER BAR ======= */
 footer {
   background-color: var(--secondary-background);
   display: flex;
@@ -213,20 +213,11 @@ footer li {
   margin: 20px 0; 
 }
 
-
-/* INDEX PAGE */
-  /* HERO SECTION */
+/* ===== INDEX ===== */
+  /* ======= HERO SECTION ======= */
 img {
   max-width: 100%;
   display: block;
-}
-
-.hero-section {
-  display: flex;
-  justify-content: space-between;
-  gap: 40px;
-  padding: 40px 20px;
-  min-height: 40vh
 }
 
 .hero-text {
@@ -270,7 +261,9 @@ img {
 }
 
 .btn-primary:hover {
-  background-color: var(--cta-color);
+  background-color: #FCF7F8;
+  border: solid 2px var(--accent-color);
+  color: var(--accent-color)
 }
 
 .btn-secondary {
@@ -284,128 +277,185 @@ img {
   color: var(--base-color);
 }
 
+.hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+    padding: 45px 3%;
+    min-height: unset;
+}
+
+.hero-text {
+    margin: 0;
+    min-width: 0;
+    gap: 18px;
+}
+
+.hero-text h2 {
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+    line-height: 1.15;
+    margin: 0;
+}
+
+.hero-text p {
+    font-family: var(--font-2);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.hero-buttons a {
+    text-align: center;
+}
+
 .hero-image {
-  flex: 1;
-  margin-right: 20px;
-  display: flex;
-  justify-content: flex-end;
+    margin: 0;
+    min-width: 0;
+    width: 100%;
 }
 
 .hero-image img {
-  width: 100%;
-  max-width: 800px;
-  min-height: 300px;
+    width: 100%;
+    height: 350px;
+    min-height: 0;
+    max-width: none;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 16px;
 }
 
-  /* FEATURED SECTION */
 
+  /* ======= FEATURED SECTION ======= */
 .featured-cards-section {
-  padding: 60px 40px;
-  text-align: center;
+    gap: 40px;
+    padding: 45px 3%;
+    text-align: center;
 }
 
 .featured-cards-section h2 {
-  font-family: var(--font-1);
-  color: var(--primary-color);
-  font-size: 2em;
-  margin-bottom: 40px;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    margin-bottom: 28px;
+    font-family: var(--font-1);
+    color: #D98E4A;
 }
 
 .cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  max-width: 1000px;
-  margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 24px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
 .drink-card {
-  background-color: var(--secondary-background);
-  border-radius: 12px;
-  padding: 24px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    min-width: 0;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--secondary-background);
+    border-radius: 16px;
+    text-align: center;
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.drink-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(11, 32, 39, 0.10);
 }
 
 .drink-card img {
-  width: 100%;
-  max-width: 200px;
-  height: auto;
-  object-fit: contain;
-  border-radius: 12px;
-  margin-bottom: 16px;
+    width: 100%;
+    height: 190px;
+    max-width: none;
+    object-fit: contain;
+    border-radius: 10px;
+    margin-bottom: 18px;
 }
 
 .drink-card h3 {
-  font-family: var(--font-1);
-  color: var(--primary-color);
-  font-size: 1.3em;
-  margin-bottom: 8px;
+    font-family: var(--font-3);
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.6em;
+    line-height: 1.6em;
 }
 
 .drink-card p {
-  font-family: var(--font-2);
-  color: var(--primary-color);
-  font-size: 0.95em;
-  margin-bottom: 16px;
+    width: 100%;
+    font-family: var(--font-2);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
 }
 
 .card-link {
-  text-decoration: none;
-  color: var(--base-color);
-  background-color: var(--accent-color);
-  padding: 8px 20px;
-  border-radius: 8px;
-  font-family: var(--font-2);
-  font-weight: 600;
-  font-size: 0.9em;
+    display: inline-block;
+    margin-top: auto;
+    padding: 10px 22px;
+    border-radius: 8px;
+    background-color: var(--accent-color);
+    color: var(--base-color);
+    font-family: var(--font-2);
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
 }
 
-  /* ABOUT SECTION */
+.card-link:hover {
+    background-color: #da9553e9;
+}
 
+  /* ======= ABOUT SECTION ======= */
 .about-section {
-  display: flex;
-  justify-content: space-between;
-  gap: 40px;
-  padding: 40px 20px;
-  min-height: 40vh
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+    padding: 45px 3%;
 }
 
 .about-text {
-  flex: 1;
-  margin-left: 20px;
-  display: flex;
-  flex-direction: column;
+    min-width: 0;
 }
 
-.about-text h1 {
-  margin-bottom: 20px;
-  font-size: 3.6em;
-  font-family: var(--font-1);
+.about-text h2 {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    margin-bottom: 20px;
 }
 
 .about-text p {
-  font-family: var(--font-2);
-  margin-top: 30px;
+    font-family: var(--font-2);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 25px;
 }
 
 .about-image {
-  flex: 1;
-  margin-right: 20px;
-  display: flex;
-  justify-content: flex-end;
+    width: 100%;
+    min-width: 0;
 }
 
 .about-image img {
-  width: 100%;
-  max-width: 800px;
-  min-height: 300px;
+    display: block;
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 16px;
 }
 
-  /* FAQ SECTION */
-
+  /* ======= FAQ SECTION ======= */
 .faq-section {
   display: flex;
   margin: 35px;
@@ -468,4 +518,6 @@ img {
   content: "\2212"; 
   color: var(--base-color);
 }
+
+/* ---------------- END OF INDEX ---------------- */
 
