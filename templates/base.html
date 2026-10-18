@@ -29,14 +29,14 @@
         <h2>Your Shopping Bag</h2>
         {% if cart %}
             <ul>
-                {% for drink, details in cart.items() %}
-                    <li>
-                        {{ drink }}: {{ details['quantity'] }} x
-                        ${{ details['price'] }}
-                        = ${{ details['quantity'] * details['price'] }}
-                        <a href="{{ url_for('remove_from_cart', drink=drink) }}">[Remove]</a> 
-                    </li>
-                {% endfor %}
+            {% for key, details in cart.items() %}
+                <li>
+                    {{ details['name'] }} ({{ details['size'] }}): {{ details['quantity'] }} x
+                    ${{ '%.2f'|format(details['price']|float) }}
+                    = ${{ '%.2f'|format(details['quantity'] * details['price']|float) }}
+                    <a href="{{ url_for('remove_from_cart', drink=key) }}">[Remove]</a>
+                </li>
+            {% endfor %}
             </ul>
         {% else %}
             <p>Your cart is empty</p>

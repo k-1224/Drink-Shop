@@ -29,33 +29,40 @@ def load_data():
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
     drink = request.form['drink']
+    size = request.form['size']
     quantity = int(request.form['quantity'])
 
     lattes, milk_teas, fruit_teas, addons = load_data()
+    drinks = {**lattes, **milk_teas, **fruit_teas}  #the 2 asterisk beside variables are to unpack three dictionaries into one#
 
-    drinks = {**lattes, **milk_teas, **fruit_teas}   # the asterisk is to unpack three dictionaries into one#
+    price = None
+    for option in drinks[drink]['size_prices']:
+        if option['size'] == size:
+            price = float(option['price'])
+            break 
+
+    if price is None:
+        flash("That size isn't available.", "error")
+        return redirect(url_for('menu'))
+
     cart = session.get('cart', {})
+    key = f"{drink}|{size}"  
 
-    cart[drink] = {
-    'price': drinks[drink]['size_prices'][0]['price'],
-    'quantity': quantity
-}
-
-    if drink in cart:
-        cart[drink]['quantity'] += quantity
+    if key in cart:
+        cart[key]['quantity'] += quantity
     else:
-        cart[drink] = {
-            'size_price': drinks[drink]['price'],
+        cart[key] = {
+            'name': drink,
+            'size': size,
+            'price': price,
             'quantity': quantity
         }
 
-        
-
     session['cart'] = cart
-    session.modified = True
-
-    flash(f"{quantity}{drink}(s) added to cart.")
+    flash(f"{quantity} x {size} {drink} added to cart.")
     return redirect(url_for('menu'))
+
+ #debug my code from google ai, because mine are very complex#
 
 @app.route("/remove_from_cart/<drink>")
 def remove_from_cart(drink):
@@ -64,11 +71,9 @@ def remove_from_cart(drink):
     if drink in cart:
         del cart[drink]
         session['cart'] = cart
-        session.modified = True        
-        flash(f"Removed all {drink} from the cart.", "error")
-
+        flash(f"Removed {drink} from the cart.", "error")
     else:
-        flash("Item not found in cart")   
+        flash("Item not found in cart")
 
     return redirect(url_for('menu'))
 
@@ -86,7 +91,6 @@ def menu():
     
     return render_template("menu.html", lattes=lattes, milk_teas=milk_teas, fruit_teas=fruit_teas, addons=addons, cart=cart)
 
-    
 
 @app.route("/order_history")
 def order_history():
