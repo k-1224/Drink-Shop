@@ -8,7 +8,7 @@
     {% for milk_tea, details in milk_teas.items() %}
         <div class="milktea-card">
             <div class="milktea-image">
-                <img src="{{ details['image'] }}">
+                <img class="drink-images" src="{{ details['image'] }}">
             </div>
             <div class="milktea-name-desc">
                 <p class="milktea-name">{{ milk_tea }}</p>
@@ -29,7 +29,7 @@
                     <form id="more-info-milk-{{ loop.index }}" popover class="drink-popover" action="{{ url_for('add_to_cart' ) }}" method="post">
                         <h3>{{ milk_tea }}</h3>
                         <p class="milktea-desc">{{ details['descriptions'] }}</p>
-                        <img src="{{ details['image'] }}">
+                        <img class="drink-popover-images" src="{{ details['image'] }}">
                             <input type="hidden" name="drink" value="{{ milk_tea }}">
                         <label for="size">Size</label>
                         <select name="size" id="size">
@@ -63,7 +63,7 @@
     {% for latte, details in lattes.items() %}
         <div class="milktea-card">
             <div class="milktea-image">
-                <img src="{{ details['image'] }}">
+                <img class="drink-images" src="{{ details['image'] }}">
             </div>
             <div class="milktea-name-desc">
                 <p class="milktea-name">{{ latte }}</p>
@@ -82,7 +82,7 @@
                     <form id="more-info-latte-{{ loop.index }}" popover class="drink-popover" action="{{ url_for('add_to_cart') }}" method="post">
                         <h3>{{ latte }}</h3>
                         <p>{{ details['descriptions'] }}</p>
-                        <img src="{{ details['image'] }}">
+                        <img class="drink-popover-images" src="{{ details['image'] }}">
                         <input type="hidden" name="drink" value="{{ latte }}">
                         <label for="latte-size-{{ loop.index }}">Size</label>
                         <select name="size" id="latte-size-{{ loop.index }}">
@@ -108,7 +108,7 @@
     {% for fruit_tea, details in fruit_teas.items() %}
         <div class="milktea-card">
             <div class="milktea-image">
-                <img src="{{ details['image'] }}">
+                <img class="drink-images" src="{{ details['image'] }}">
             </div>
             <div class="milktea-name-desc">
                 <p class="milktea-name">{{ fruit_tea }}</p>
@@ -134,7 +134,7 @@
                           method="post">
                         <h3>{{ fruit_tea }}</h3>
                         <p>{{ details['descriptions'] }}</p>
-                        <img src="{{ details['image'] }}">
+                        <img class="drink-popover-images"  src="{{ details['image'] }}">
                         <input type="hidden" name="drink" value="{{ fruit_tea }}">
                         <label for="fruit-size-{{ loop.index }}">Size</label>
                         <select name="size" id="fruit-size-{{ loop.index }}">
