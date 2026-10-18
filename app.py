@@ -12,6 +12,11 @@ app.secret_key = 'drink143'
 # trim
 # striptags
 
+# ——— VARIABLES ——— #
+
+sugar_levels = ['100% (Standard)', '50%', '30%', 'No sugar']
+
+
 # ——— LOADING DATA ——— #
 def load_data():
         with open('data/latte.json') as file:
@@ -46,7 +51,7 @@ def add_to_cart():
         return redirect(url_for('menu'))
 
     cart = session.get('cart', {})
-    key = f"{drink}|{size}"  
+    key = f"{drink} {size}"  
 
     if key in cart:
         cart[key]['quantity'] += quantity
@@ -77,6 +82,10 @@ def remove_from_cart(drink):
 
     return redirect(url_for('menu'))
 
+@app.context_processor
+def inject_cart():
+    return {'cart': session.get('cart', {})}
+
 # ——— ROUTE ——— #
 
 @app.route("/")
@@ -89,7 +98,7 @@ def menu():
     lattes, milk_teas, fruit_teas, addons = load_data()
     cart = session.get('cart', {})
     
-    return render_template("menu.html", lattes=lattes, milk_teas=milk_teas, fruit_teas=fruit_teas, addons=addons, cart=cart)
+    return render_template("menu.html", lattes=lattes, milk_teas=milk_teas, fruit_teas=fruit_teas, addons=addons, cart=cart, sugar_levels=sugar_levels)
 
 
 @app.route("/order_history")
