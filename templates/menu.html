@@ -3,6 +3,60 @@
 {% block title %}Nomolicious {% endblock %}
 
 {%block content %} 
+
+{% macro drink_popover(prefix, index, name, details, chosen_addons, sugar_levels) %}
+<form id="more-info-{{ prefix }}-{{ index }}" popover class="drink-popover" action="{{ url_for('add_to_cart') }}" method="post">
+    <h3>{{ name }}</h3>
+    <p class="milktea-desc">{{ details['descriptions'] }}</p>
+    <img class="drink-popover-images" src="{{ details['image'] }}">
+    <input type="hidden" name="drink" value="{{ name }}">
+
+    <label for="{{ prefix }}-size-{{ index }}">Size</label>
+    <select name="size" id="{{ prefix }}-size-{{ index }}">
+        {% for size_price in details['size_prices'] %}
+            <option value="{{ size_price['size'] }}">
+                {{ size_price['size']|title }} - NZ${{ size_price['price'] }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <div class="option-group" role="radiogroup" aria-label="Sugar level">
+        <div class="option-header">
+            <div class="option-title">Sugar level</div>
+            <span class="required-tag">Required · Select 1</span>
+        </div>
+        {% for level in sugar_levels %}
+            <label class="option-row">
+                <input type="radio" name="sugar" value="{{ level }}" required>
+                <span class="option-name">{{ level }}</span>
+            </label>
+        {% endfor %}
+    </div>
+
+    {% if chosen_addons %}
+    <div class="option-group" role="group" aria-label="Toppings">
+        <div class="option-header">
+            <div class="option-title">Toppings</div>
+            <span class="optional-tag">Optional · Select any</span>
+        </div>
+        {% for addon_name, addon in chosen_addons.items() %}
+            <label class="option-row">
+                <input type="checkbox" name="addons" value="{{ addon_name }}">
+                <span class="option-name">{{ addon_name }}</span>
+                <span class="option-price">+NZ${{ '%.2f'|format(addon['price']|float) }}</span>
+            </label>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <label for="{{ prefix }}-quantity-{{ index }}">Quantity</label>
+    <input type="number" name="quantity" id="{{ prefix }}-quantity-{{ index }}" value="1" min="1" required>
+    <button type="submit">Add to Cart</button>
+</form>
+{% endmacro %}
+
+<!-- ——— MILK TEAS ——— -->
+
 <h2 class="title">MILK TEA</h2>
 <div class="milk_tea-list">
     {% for milk_tea, details in milk_teas.items() %}
@@ -24,25 +78,7 @@
                     <button type="button" popovertarget="more-info-milk-{{ loop.index }}" class="plus-button">
                     <span class="material-symbols-outlined">add</span>
                     </button>
-
-                    <!-- POPOVER -->
-                    <form id="more-info-milk-{{ loop.index }}" popover class="drink-popover" action="{{ url_for('add_to_cart' ) }}" method="post">
-                        <h3>{{ milk_tea }}</h3>
-                        <p class="milktea-desc">{{ details['descriptions'] }}</p>
-                        <img class="drink-popover-images" src="{{ details['image'] }}">
-                            <input type="hidden" name="drink" value="{{ milk_tea }}">
-                        <label for="size">Size</label>
-                        <select name="size" id="size">
-                            {% for size_price in details['size_prices'] %}
-                                <option value="{{ size_price['size'] }}">
-                                    {{ size_price['size']|title }} - ${{ size_price['price'] }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                        <label for="quantity">Quantity</label>
-                        <input type="number" name="quantity" value="1" min="1" required>
-                        <button type="submit">Add to Cart</button>
-                    </form> 
+                    {{ drink_popover('milk', loop.index, milk_tea, details, addons['milk_tea'], sugar_levels) }}
                 </div>
             </div>
         </div>
@@ -57,6 +93,8 @@
         {% endif %}
     {% endwith %}
 </div>
+
+<!-- ——— LATTES ——— -->
 
 <h2 class="title">LATTE</h2>
 <div class="milk_tea-list">
@@ -79,22 +117,7 @@
                     <button type="button" popovertarget="more-info-latte-{{ loop.index }}" class="plus-button">
                         <span class="material-symbols-outlined">add</span>
                     </button>
-                    <form id="more-info-latte-{{ loop.index }}" popover class="drink-popover" action="{{ url_for('add_to_cart') }}" method="post">
-                        <h3>{{ latte }}</h3>
-                        <p>{{ details['descriptions'] }}</p>
-                        <img class="drink-popover-images" src="{{ details['image'] }}">
-                        <input type="hidden" name="drink" value="{{ latte }}">
-                        <label for="latte-size-{{ loop.index }}">Size</label>
-                        <select name="size" id="latte-size-{{ loop.index }}">
-                            {% for size_price in details['size_prices'] %}
-                                <option value="{{ size_price['size'] }}">
-                                    {{ size_price['size']|title }} - NZ${{ size_price['price'] }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                        <label for="latte-quantity-{{ loop.index }}">Quantity</label>
-                        <input type="number" name="quantity" id="latte-quantity-{{ loop.index }}" value="1" min="1" required>
-                        <button type="submit">Add to Cart</button>
+                    {{ drink_popover('latte', loop.index, latte, details, addons['latte'], sugar_levels) }}
                     </form>
                 </div>
             </div>
@@ -102,6 +125,8 @@
     {% endfor %}
 </div>
 
+
+<!-- ——— FRUIT TEAS ——— -->
 
 <h2 class="title">FRUIT TEA</h2>
 <div class="milk_tea-list">
@@ -127,27 +152,7 @@
                             class="plus-button">
                         <span class="material-symbols-outlined">add</span>
                     </button>
-                    <form id="more-info-fruit-{{ loop.index }}"
-                          popover
-                          class="drink-popover"
-                          action="{{ url_for('add_to_cart') }}"
-                          method="post">
-                        <h3>{{ fruit_tea }}</h3>
-                        <p>{{ details['descriptions'] }}</p>
-                        <img class="drink-popover-images"  src="{{ details['image'] }}">
-                        <input type="hidden" name="drink" value="{{ fruit_tea }}">
-                        <label for="fruit-size-{{ loop.index }}">Size</label>
-                        <select name="size" id="fruit-size-{{ loop.index }}">
-                            {% for size_price in details['size_prices'] %}
-                                <option value="{{ size_price['size'] }}">
-                                    {{ size_price['size']|title }} - NZ${{ size_price['price'] }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                        <label for="fruit-quantity-{{ loop.index }}">Quantity</label>
-                        <input type="number" name="quantity" id="fruit-quantity-{{ loop.index }}" value="1" min="1" required>
-                        <button type="submit">Add to Cart</button>
-                    </form>
+                    {{ drink_popover('fruit', loop.index, fruit_tea, details, addons['fruit_tea'], sugar_levels) }}
                 </div>
             </div>
         </div>

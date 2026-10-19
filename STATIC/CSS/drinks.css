@@ -29,20 +29,21 @@
     justify-self: center;
     font-family: var(--font-1);
     font-size: 2em;
-    color: #e3cab1
+    color: #D98E4A;
 }
 
 .title::before {
     content: "──────────────────────────⪼";
     margin-right: 5px;
-    color: var(--secondary-background)
+    color: #D98E4A;
 }
 
 .title:after {
     content: "⪻──────────────────────────";
     margin-left: 5px;
-    color:var(--secondary-background)
+    color:#D98E4A;
 }
+
 
 
 /* ITEM CARD */
@@ -92,7 +93,7 @@
 }
 
 .milktea-name {
-    font-family: "Mouse Memoirs", sans-serif;
+    font-family: var(--font-3);
     font-weight: 500;
     font-style: normal;
     font-size: 1.6em;
@@ -246,9 +247,9 @@ footer {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid var(--secondary-background);
+    border: 2px solid var(--accent-color);
     border-radius: 50%;
-    background-color: var(--secondary-background);
+    background-color: var(--accent-color);
     color: #FFFFFF;
     cursor: pointer;
     margin-top: 5px;
@@ -256,6 +257,32 @@ footer {
     .material-symbols-outlined {
      color: var(--primary-color)
     }
+}
+
+/* ITEM POPOVER SCROLLBAR */
+
+.drink-popover::-webkit-scrollbar {
+    width: 8px;
+}
+
+.drink-popover::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+    margin-block: 15px;
+}
+
+.drink-popover::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 4px;
+}
+
+.drink-popover::-webkit-scrollbar-thumb:hover {
+    background-color: var(--cta-color);
+}
+
+.plus-button:hover {
+    background-color: #da9553e9;
+    border: #da9553e9;
 }
 
 .drink-popover::backdrop {
@@ -306,7 +333,6 @@ html:has(.drink-popover:popover-open) {
     transform: translateX(40px);
 
     :before {
-    content: "";
     position: absolute;
 
     bottom: 100%;
@@ -320,4 +346,79 @@ html:has(.drink-popover:popover-open) {
     border-bottom: 10px solid var(--base-color);
     }
 
+}
+
+/* ——— OPTION GROUPS (sugar level, toppings) ——— */
+
+.option-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.option-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.option-title {
+    font-family: "Mouse Memoirs", sans-serif;
+    font-size: 1.6em;
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--primary-color);
+}
+
+.required-tag,
+.optional-tag {
+    font-family: "Quicksand", sans-serif;
+    font-size: 0.8em;
+    font-weight: 700;
+}
+
+.required-tag { color: var(--cta-color); }
+.optional-tag { color: #606060; }
+
+.option-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background-color: #fff;
+    border: 2px solid #e3cab1;
+    border-radius: 10px;
+    font-family: "Quicksand", sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.option-row:hover {
+    border-color: var(--accent-color);
+}
+
+.option-row:has(input:checked) {
+    border-color: var(--cta-color);
+    background-color: var(--secondary-background);
+}
+
+.drink-popover .option-row input {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    accent-color: var(--cta-color);
+}
+
+.option-name {
+    flex: 1;
+}
+
+.option-price {
+    font-size: 0.9em;
+    color: #606060;
 }
