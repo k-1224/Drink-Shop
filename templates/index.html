@@ -7,7 +7,7 @@
     <div class="hero-section">
         <div class="hero-text">
             <h2>I love drinking</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus quasi est corporis illum maiores dolorem deleniti numquam incidunt officia. Quos maiores commodi, excepturi magnam atque saepe odio vitae omnis assumenda.</p>
+            <p>Discover your next favourite drink at Nomolicious! Explore our selection of creamy lattes, delicious milk teas, and refreshing fruit teas. Choose your favourite flavours, customise your drinks, and easily place your order in just a few steps.</p>
             <div class="hero-buttons">
                 <a href="{{ url_for('menu')}}" class="btn-primary">Explore Drinks</a>
                 <a href="{{ url_for('menu')}}" class="btn-secondary">Order Now</a>
@@ -29,12 +29,12 @@
             </div>
             <div class="drink-card">
                 <img src="/static/images/Matcha Milk Tea.png" alt="Tea">
-                <h3>Tea</h3>
+                <h3>Milk Tea</h3>
                 <p>Classic brewed teas, hot or iced, with milk options available.</p>
                 <a href="{{ url_for('menu', category='tea') }}" class="card-link">View menu</a>
             </div>
             <div class="drink-card">
-                <img src="/static/images/Fruit tea.png" alt="Fruit Tea">
+                <img src="/static/images/Kiwi Tea.png" alt="Fruit Tea">
                 <h3>Fruit Tea</h3>
                 <p>Refreshing fruit-infused teas, perfect for a light, fruity pick-me-up.</p>
                 <a href="{{ url_for('menu', category='fruit-tea') }}" class="card-link">View menu</a>
@@ -45,7 +45,7 @@
     <div class="about-section">
         <div class="about-text">
             <h1>About Nomolicious</h1>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos, ipsa eum voluptate consequatur omnis officiis tenetur earum tempora! Sapiente dolorem distinctio quod ea. Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus excepturi saepe, libero nam ut repellendus nulla quo explicabo corporis perspiciatis accusamus facere, distinctio, perferendis veritatis? Suscipit corporis magni asperiores ullam? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error, magnam. Qui, deserunt impedit quis quas ipsa aliquid iusto cupiditate eum similique atque itaque sint eveniet adipisci minima, vero consequuntur culpa? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi hic, fugit, praesentium perferendis, eligendi maiores eos pariatur id illum ullam consectetur officia consequatur qui sit ipsum corporis harum minima placeat. </p>
+            <p>Nomolicious is an online drink shop created for people who enjoy a variety of refreshing and delicious beverages. Our website offers a selection of milk teas, lattes, and fruit teas, with different flavours and customization options to suit individual preferences. Customers can explore the menu, choose their preferred drink sizes and toppings, add items to their cart, and place their orders conveniently through the website. Our goal is to provide a simple, enjoyable, and user-friendly ordering experience where customers can easily discover and customise their favourite drinks. </p>
         </div>
         <div class="about-image">
                 <img src="/static/images/playful bg.png" alt="Nomolicious Playful Background">
@@ -70,7 +70,7 @@
 
         <button class="accordion">How do I place an order?</button>
         <div class="panel">
-        <p>After adding your drinks to the cart, click “View Order.” On the Order page, review your items and click “Checkout.” You will then need to provide your email, delivery address or location, and select a payment method before completing your order.</p>
+            <p>After adding your drinks to the cart, click “View Order.” On the Order page, review your items and click “Checkout.” You will then need to provide your email, delivery address or location, and select a payment method before completing your order.</p>
         </div>
 
         <button class="accordion">How can I check my recent orders?</button>
@@ -78,6 +78,7 @@
         <p>You can click the account icon in the navigation bar to view information about your recent orders, including the order details and expected arrival information.</p>
         </div>
     </div>
+    
 
 <script>
 var acc = document.getElementsByClassName("accordion");
@@ -85,16 +86,22 @@ var i;
 
 for (i = 0; i < acc.length; i++) {
   acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
+    var isActive = this.classList.contains("active");
+
+    // close every accordion + panel first
+    for (var j = 0; j < acc.length; j++) {
+      acc[j].classList.remove("active");
+      acc[j].nextElementSibling.style.maxHeight = null;
+    }
+
+    if (!isActive) {
+      this.classList.add("active");
+      var panel = this.nextElementSibling;
       panel.style.maxHeight = panel.scrollHeight + "px";
     }
   });
 }
-</script>
-
+</script>       
+<!-- some part of js accordion code are from w3s, others are from internet. -->
 
 {% endblock %}

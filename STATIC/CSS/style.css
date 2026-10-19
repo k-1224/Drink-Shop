@@ -162,11 +162,11 @@ footer {
   margin-bottom: 10px;
 }
 
-.footer-pages a {
+.footer-pages a, .footer-drinks a {
   text-decoration: none;
 }
 
-.footer-pages a:hover{
+.footer-pages a:hover, .footer-drinks a:hover{
   text-decoration: underline;
 }
 
@@ -427,19 +427,25 @@ img {
 }
 
 .about-text {
-    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
-.about-text h2 {
+.about-text h1 {
+    font-family: var(--font-1);
     font-size: clamp(1.8rem, 3vw, 2.5rem);
-    margin-bottom: 20px;
+    text-align: left;
+    margin: 0 0 20px;
+    line-height: 1.2;
 }
 
 .about-text p {
     font-family: var(--font-2);
     font-size: 1rem;
     line-height: 1.8;
-    margin-bottom: 25px;
+    margin: 0;
 }
 
 .about-image {
