@@ -1,10 +1,36 @@
 {
-    "Extra Boba": {"price": 1},
-    "Creamy Puff": {"price": 1.5},
-    "Grass Jelly": {"price": 1},
-    "Pudding": {"price": 1},
-    "Crystal Boba": {"price": 1},
-    "Aloe Vera Jelly": {"price": 1},
-    "Coffee Jelly": {"price": 1},
-    "Cheese Foam": {"price": 1.5}
+    "milk_tea": {
+        "Extra Boba": {"price": 1},
+        "Creamy Puff": {"price": 0.5},
+        "Grass Jelly": {"price": 1},
+        "Pudding": {"price": 2},
+        "Crystal Boba": {"price": 1},
+        "Aloe Vera Jelly": {"price": 1},
+        "Coffee Jelly": {"price": 1},
+        "Cheese Foam": {"price": 0.5},
+        "Vanilla Syrup": {"price": 0.5},
+        "Caramel Syrup": {"price": 0.5},
+        "Whipped Cream": {"price": 1}
+    },
+
+    "latte": {
+        "Extra Shot": {"price": 1.5},
+        "Vanilla Syrup": {"price": 0.5},
+        "Caramel Syrup": {"price": 0.5},
+        "Whipped Cream": {"price": 1},
+        "Brown Sugar Boba": {"price": 1},
+        "Egg Pudding": {"price": 1},
+        "Cheese Foam": {"price": 1.5},
+        "Sea Salt Cream": {"price": 1.5}
+        
+    },
+    "fruit_tea": {
+        "Popping Boba": {"price": 1},
+        "Lychee Jelly": {"price": 1},
+        "Aloe Vera Jelly": {"price": 1},
+        "Nata de Coco": {"price": 1},
+        "Crystal Boba": {"price": 1},
+        "Fresh Fruit Pieces": {"price": 1.5}
+    }
 }
+
