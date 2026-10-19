@@ -46,6 +46,14 @@ def add_to_cart():
         flash("Drink not found.", "error")
         return redirect(url_for('menu'))
 
+    if drink in lattes:
+        available_addons = addons['latte']
+    elif drink in milk_teas:
+        available_addons = addons['milk_tea']
+    else:
+        available_addons = addons['fruit_tea']
+
+
     if sugar not in sugar_levels:
         flash("Please choose a sugar level.", "error")
         return redirect(url_for('menu'))
@@ -61,10 +69,10 @@ def add_to_cart():
         return redirect(url_for('menu'))
 
     for name in chosen_addons:
-        if name not in addons:
+        if name not in available_addons:
             flash("Unknown add-on.", "error")
             return redirect(url_for('menu'))
-        price += float(addons[name]['price'])
+        price += float(available_addons[name]['price'])
 
     cart = session.get('cart', {})
     # ——— everything that makes two items different goes in the key ——— #
