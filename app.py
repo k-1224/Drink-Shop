@@ -53,29 +53,30 @@ def add_to_cart():
     else:
         available_addons = addons['fruit_tea']
 
-
     if sugar not in sugar_levels:
         flash("Please choose a sugar level.", "error")
         return redirect(url_for('menu'))
 
-    price = None
+    drinks_price = None
     for option in drinks[drink]['size_prices']:
         if option['size'] == size:
-            price = float(option['price'])
+            drinks_price = float(option['price'])
             break
 
-    if price is None:
+    if drinks_price is None:
         flash("That size isn't available.", "error")
         return redirect(url_for('menu'))
 
+    addons_price = 0
     for name in chosen_addons:
         if name not in available_addons:
             flash("Unknown add-on.", "error")
             return redirect(url_for('menu'))
-        price += float(available_addons[name]['price'])
+        addons_price += float(available_addons[name]['price'])
+
+    price = drinks_price + addons_price
 
     cart = session.get('cart', {})
-    # ——— everything that makes two items different goes in the key ——— #
     key = '|'.join([drink, size, sugar] + sorted(chosen_addons))
 
     if key in cart:
@@ -83,10 +84,13 @@ def add_to_cart():
     else:
         cart[key] = {
             'name': drink,
+            'image': drinks[drink]['image'],
             'size': size,
             'sugar': sugar,
             'addons': chosen_addons,
-            'price': price,          # ——— price of one drink, add-ons included ——— #
+            'drinks_price': drinks_price,
+            'addons_price': addons_price,
+            'price': price,
             'quantity': quantity
         }
 
@@ -94,7 +98,7 @@ def add_to_cart():
     flash(f"{quantity} x {drink} added to cart.")
     return redirect(url_for('menu'))
 
- # ——— debug some my code from google ai, because mine are very complex and not easy to fix ——— #
+ # ——— debug some of my code from google ai, because mine are very complex and not easy to fix ——— #
 
 @app.route("/remove_from_cart/<drink>")
 def remove_from_cart(drink):
@@ -109,9 +113,36 @@ def remove_from_cart(drink):
 
     return redirect(url_for('menu'))
 
+
 @app.context_processor # ——— use to show the item in a cart to all html templates ——— #
 def inject_cart():
-    return {'cart': session.get('cart', {})}
+    cart = session.get('cart', {})
+    total, drinks_subtotal, addon_subtotal, discount_applied, subtotal, discount_amount = calculate_total(cart)
+    return {'cart': cart, 'total': total, 'drinks_subtotal': drinks_subtotal,
+            'addon_subtotal': addon_subtotal, 'discount_applied': discount_applied,
+            'subtotal': subtotal, 'discount_amount': discount_amount}
+
+# ——— FUNCTION ——— #
+
+def calculate_total(cart):
+    drinks_subtotal = sum(item.get('drinks_price', item['price']) * item['quantity'] for item in cart.values())
+    addon_subtotal = sum(item.get('addons_price', 0) * item['quantity'] for item in cart.values())
+
+    subtotal = drinks_subtotal + addon_subtotal
+
+    drinks_subtotal = sum(item.get('drinks_price', item['price']) * item['quantity'] for item in cart.values())
+
+    discount_applied = False
+    discount_amount = 0
+    total = subtotal
+
+    if subtotal > 180:
+        discount_amount = subtotal * 0.1
+        total = subtotal - discount_amount
+        discount_applied = True
+
+    return total, drinks_subtotal, addon_subtotal, discount_applied, subtotal, discount_amount
+
 
 # ——— ROUTE ——— #
 

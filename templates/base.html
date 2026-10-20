@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/drinks.css') }}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
 </head>
 <body>
   <header> 
@@ -26,21 +27,31 @@
     </button>
     </div>
     <div id="popover-bag" popover>
-        <h2>Your Shopping Bag</h2>
+        <h2>Your Bag</h2>
         {% if cart %}
             <ul>
             {% for key, details in cart.items() %}
-                <li>
-                    {{ details['name'] }} ({{ details['size'] }}, {{ details['sugar'] }}):
-                    {{ details['quantity'] }} x ${{ '%.2f'|format(details['price']) }}
-                    {% if details['addons'] %}<br><small>+ {{ details['addons']|join(', ') }}</small>{% endif %}
-                    <a href="{{ url_for('remove_from_cart', drink=key) }}">[Remove]</a>
+                <li class="cart-row">
+                  <img class="cart-images" src="{{ details['image'] }}">
+                  <div class="cart-info">
+                      {{ details['name'] }} [{{ details['size'] }}, {{ details['sugar'] }}]:
+                      {{ details['quantity'] }} x ${{ '%.2f'|format(details['price']) }}
+                      {% if details['addons'] %}<br><small>+ {{ details['addons']|join(', ') }}</small>{% endif %}
+                  </div>
+                  <a href="{{ url_for('remove_from_cart', drink=key) }}" class="trash-icon"><span class="material-symbols-outlined">delete</span></a>
+              </li>
                 </li>
             {% endfor %}
             </ul>
-        {% else %}
-            <p>Your cart is empty</p>
+            {% else %}
+            <p>cart is empty</p>
         {% endif %}
+        <p>Drinks Subtotal: ${{ '%.2f'|format(drinks_subtotal) }}</p>
+        <p>Add-ons Subtotal: ${{ '%.2f'|format(addon_subtotal) }}</p>
+        {% if discount_applied %}
+            <p>Discount (10%): -${{ '%.2f'|format(discount_amount) }}</p>
+        {% endif %}
+        <p><strong>Total: ${{ '%.2f'|format(total) }}</strong></p>
     </div>
   </header>
   <main>
