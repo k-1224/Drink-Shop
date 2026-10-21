@@ -7,7 +7,7 @@
 {% macro drink_popover(prefix, index, name, details, chosen_addons, sugar_levels) %}
 <form id="more-info-{{ prefix }}-{{ index }}" popover class="drink-popover" action="{{ url_for('add_to_cart') }}" method="post">
     <h3>{{ name }}</h3>
-    <p class="milktea-desc">{{ details['descriptions'] }}</p>
+    <p>{{ details['descriptions'] }}</p>
     <img class="drink-popover-images" src="{{ details['image'] }}">
     <input type="hidden" name="drink" value="{{ name }}">
 
