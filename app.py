@@ -87,6 +87,24 @@ def add_to_cart():
     price = drinks_price + addons_price
 
     cart = session.get('cart', {})
+
+    '''DRINK BOUNDARIES/RESTRAINTS '''
+    available_stock = drinks[drink]['stock']
+    original_quantity = sum(item['quantity'] for item in cart.values()
+                            if item['name'] == drink)
+
+    if available_stock <= 0:
+        flash(f"Sorry {drink} is out of stock.", "error")
+        return redirect(url_for('menu'))
+
+    if original_quantity + quantity > available_stock:
+        flash(f"Sorry, only {available_stock} {drink}(s) left in stock.", "error")
+        return redirect(url_for('menu'))
+
+    if quantity >= 10:
+        flash("You are ordering a lot! Consider calling us for a special deal.", "error")
+        return redirect(url_for('menu'))
+
     key = '|'.join([drink, size, sugar, ice] + sorted(chosen_addons))
 
     if key in cart:
