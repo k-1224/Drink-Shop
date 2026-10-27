@@ -4,14 +4,14 @@
 
 {%block content %} 
 
-{% macro drink_popover(prefix, index, name, details, chosen_addons, sugar_levels) %}
+{% macro drink_popover(prefix, index, name, details, chosen_addons, sugar_levels, ice_levels) %}
 <form id="more-info-{{ prefix }}-{{ index }}" popover class="drink-popover" action="{{ url_for('add_to_cart') }}" method="post">
     <h3>{{ name }}</h3>
     <p>{{ details['descriptions'] }}</p>
     <img class="drink-popover-images" src="{{ details['image'] }}">
     <input type="hidden" name="drink" value="{{ name }}">
 
-    <label for="{{ prefix }}-size-{{ index }}">Size</label>
+    <label class="size-title" for="{{ prefix }}-size-{{ index }}">Size</label>
     <select name="size" id="{{ prefix }}-size-{{ index }}">
         {% for size_price in details['size_prices'] %}
             <option value="{{ size_price['size'] }}">
@@ -28,6 +28,19 @@
         {% for level in sugar_levels %}
             <label class="option-row">
                 <input type="radio" name="sugar" value="{{ level }}" required>
+                <span class="option-name">{{ level }}</span>
+            </label>
+        {% endfor %}
+
+    </div>
+        <div class="option-group" role="radiogroup" aria-label="Ice level">
+        <div class="option-header">
+            <div class="option-title">Ice level</div>
+            <span class="required-tag">Required · Select 1</span>
+        </div>
+        {% for level in ice_levels %}
+            <label class="option-row">
+                <input type="radio" name="ice" value="{{ level }}" required>
                 <span class="option-name">{{ level }}</span>
             </label>
         {% endfor %}
@@ -49,9 +62,9 @@
     </div>
     {% endif %}
 
-    <label for="{{ prefix }}-quantity-{{ index }}">Quantity</label>
+    <label class="quantity-title" for="{{ prefix }}-quantity-{{ index }}">Quantity</label>
     <input type="number" name="quantity" id="{{ prefix }}-quantity-{{ index }}" value="1" min="1" required>
-    <button type="submit">Add to Cart</button>
+    <button class="atc-btn" type="submit">Add to Cart</button>
 </form>
 {% endmacro %}
 
@@ -78,7 +91,7 @@
                     <button type="button" popovertarget="more-info-milk-{{ loop.index }}" class="plus-button">
                     <span class="material-symbols-outlined">add</span>
                     </button>
-                    {{ drink_popover('milk', loop.index, milk_tea, details, addons['milk_tea'], sugar_levels) }}
+                    {{ drink_popover('milk', loop.index, milk_tea, details, addons['milk_tea'], sugar_levels, ice_levels) }}
                 </div>
             </div>
         </div>
@@ -117,7 +130,7 @@
                     <button type="button" popovertarget="more-info-latte-{{ loop.index }}" class="plus-button">
                         <span class="material-symbols-outlined">add</span>
                     </button>
-                    {{ drink_popover('latte', loop.index, latte, details, addons['latte'], sugar_levels) }}
+                    {{ drink_popover('latte', loop.index, latte, details, addons['latte'], sugar_levels, ice_levels) }}
                     </form>
                 </div>
             </div>
@@ -152,7 +165,7 @@
                             class="plus-button">
                         <span class="material-symbols-outlined">add</span>
                     </button>
-                    {{ drink_popover('fruit', loop.index, fruit_tea, details, addons['fruit_tea'], sugar_levels) }}
+                    {{ drink_popover('fruit', loop.index, fruit_tea, details, addons['fruit_tea'], sugar_levels, ice_levels) }}
                 </div>
             </div>
         </div>

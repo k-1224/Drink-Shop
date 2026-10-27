@@ -166,17 +166,21 @@ footer {
 
 /* ITEM POPOVER*/
 
-.drink-popover button{
+.drink-popover .atc-btn{
     margin-top: 8px;
     padding: 12px;
     font-family: "Quicksand", sans-serif;
     font-size: 1em;
     font-weight: 700;
     color: var(--base-color);
-    background-color: var(--cta-color);
+    background-color: var(--accent-color);
     border: none;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.atc-btn:hover {
+    background-color: #da9453f4;
 }
 
 .drink-popover {
@@ -295,6 +299,33 @@ html:has(#popover-bag:popover-open) {
     overflow: hidden;
 }
 
+/* .checkout-btn {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: var(--font-2);
+    font-size: 1em;
+    font-weight: 700;
+    color: var(--base-color);
+    background-color: var(--cta-color);
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(193, 68, 14, 0.25);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.checkout-btn:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(217, 142, 74, 0.35);
+}
+
+.checkout-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(193, 68, 14, 0.25);
+} */
+
+
 
 
 /* MINI-POPOVER BAG */
@@ -390,10 +421,6 @@ html:has(#popover-bag:popover-open) {
         line-height: 1.2rem;
     }
 
-    a {
-        color: red;
-    }
-
     hr {
         border: 2px dashed #D98E4A;
         margin: 16px 0 12px 0;
@@ -410,6 +437,10 @@ html:has(#popover-bag:popover-open) {
 
     .p-total {
         font-size: 1.6rem;
+    }
+
+    a.checkout-btn {
+        color: var(--secondary-background)
     }
 }
 
@@ -435,6 +466,25 @@ small {
     width: fit-content;
 }
 
+.below-popover {
+    display: flex;
+    flex-direction: column;
+
+    .checkout-btn {
+        border: 2px solid var(--accent-color);
+        font-family: var(--font-3);
+        font-size: 1.4rem;
+        justify-content: center;
+        text-align: center;
+        background-color: var(--accent-color);
+        margin-top: 12px;
+        padding: 8px;
+    }
+}
+
+
+
+
 /* ——— OPTION GROUPS (sugar level, toppings) ——— */
 
 .option-group {
@@ -450,7 +500,7 @@ small {
     gap: 12px;
 }
 
-.option-title {
+.option-title, .size-title, .quantity-title {
     font-family: "Mouse Memoirs", sans-serif;
     font-size: 1.6em;
     font-weight: 400;

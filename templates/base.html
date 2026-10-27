@@ -35,18 +35,17 @@
                   <img class="cart-images" src="{{ details['image'] }}">
                   <div class="cart-info">
                       {{ details['name'] }}
-                      {{ details['quantity'] }} x ${{ '%.2f'|format(details['price']) }}<br><small>[{{ details['size'] }}, {{ details['sugar'] }}]</small>
+                      {{ details['quantity'] }} x ${{ '%.2f'|format(details['price']) }}<br><small>[{{ details['size'] }}, {{ details['sugar'] }}, {{ details['ice'] }}]</small>
                       {% if details['addons'] %}<br><small>+ {{ details['addons']|join(', ') }}</small>{% endif %}
                   </div>
-                  <a href="{{ url_for('remove_from_cart', drink=key) }}" class="trash-icon"><span class="material-symbols-outlined">delete</span></a>
-              </li>
+                  <a href="{{ url_for('remove_from_cart', drink=key) }}" class="trash-icon" onclick="return confirm('Are you sure you want to remove it?');"><span class="material-symbols-outlined">delete</span></a>
                 </li>
             {% endfor %}
             </ul>
             {% else %}
             <p>cart is empty</p>
         {% endif %}
-        <div class="p-subtotal">
+          <div class="p-subtotal">
           <p>Drinks Subtotal: ${{ '%.2f'|format(drinks_subtotal) }}</p>
           <p>Add-ons Subtotal: ${{ '%.2f'|format(addon_subtotal) }}</p>
           {% if discount_applied %}
@@ -54,7 +53,10 @@
           {% endif %}
         </div>   
         <hr>
-        <p class="p-total"><strong>Total: ${{ '%.2f'|format(total) }}</strong></p>
+        <div class="below-popover">
+          <p class="p-total"><strong>Total: ${{ '%.2f'|format(total) }}</strong></p>
+          <a href="{{ url_for('order') }}" class="checkout-btn">Check Out</a>
+        </div>  
     </div>
   </header>
   <main>

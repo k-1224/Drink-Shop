@@ -14,7 +14,9 @@ app.secret_key = 'drink143'
 
 # ——— GLOBAL VARIABLES ——— #
 
-sugar_levels = ['100% (Standard)', '50%', '30%', 'No sugar']
+sugar_levels = ['Standard Sugar (100%)', 'Half Sugar (50%)', 'Less Sugar (30%)', 'No Sugar']
+
+ice_levels = ['Full Ice (100%)', ' Half Ice (50%)', 'Less Ice (25%)','No Ice']
 
 
 # ——— LOADING DATA ——— #
@@ -33,11 +35,14 @@ def load_data():
 
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
+    '''docstring testing'''
+    
     drink = request.form['drink']
     size = request.form['size']
     sugar = request.form.get('sugar')
     chosen_addons = request.form.getlist('addons')
     quantity = int(request.form['quantity'])
+    ice = request.form.get('ice')
 
     lattes, milk_teas, fruit_teas, addons = load_data()
     drinks = {**lattes, **milk_teas, **fruit_teas} #the 2 asterisk beside variables are to unpack three dictionaries into one#
@@ -56,6 +61,11 @@ def add_to_cart():
     if sugar not in sugar_levels:
         flash("Please choose a sugar level.", "error")
         return redirect(url_for('menu'))
+
+    if ice not in ice_levels:
+        flash("Please choose a ice levels,", "error")
+        return redirect(url_for('menu'))
+        
 
     drinks_price = None
     for option in drinks[drink]['size_prices']:
@@ -77,7 +87,7 @@ def add_to_cart():
     price = drinks_price + addons_price
 
     cart = session.get('cart', {})
-    key = '|'.join([drink, size, sugar] + sorted(chosen_addons))
+    key = '|'.join([drink, size, sugar, ice] + sorted(chosen_addons))
 
     if key in cart:
         cart[key]['quantity'] += quantity
@@ -87,6 +97,7 @@ def add_to_cart():
             'image': drinks[drink]['image'],
             'size': size,
             'sugar': sugar,
+            'ice': ice,
             'addons': chosen_addons,
             'drinks_price': drinks_price,
             'addons_price': addons_price,
@@ -157,7 +168,7 @@ def menu():
 
 
     
-    return render_template("menu.html", lattes=lattes, milk_teas=milk_teas, fruit_teas=fruit_teas, addons=addons, sugar_levels=sugar_levels)
+    return render_template("menu.html", lattes=lattes, milk_teas=milk_teas, fruit_teas=fruit_teas, addons=addons, sugar_levels=sugar_levels, ice_levels=ice_levels)
 
 
 @app.route("/order")
