@@ -84,6 +84,10 @@ def add_to_cart():
             return redirect(url_for('menu'))
         addons_price += float(available_addons[name]['price'])
 
+    if len(chosen_addons) > 4:
+        flash(f"You can choose up to 3 add-ons per drink.", "error")
+        return redirect(url_for('menu'))        
+
     price = drinks_price + addons_price
 
     cart = session.get('cart', {})
