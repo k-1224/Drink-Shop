@@ -1,61 +1,85 @@
-
 {% extends "base.html" %}
 
 {% block content %}
 <div class="order-page">
-  <h1>Your Order</h1>
+    <h1>Your Order</h1>
 
-  {% if cart %}
-  <div class="order-layout">
-    <section class="order-card">
-      <h2>Order Summary</h2>
-      {% for key, item in cart.items() %}
-      <div class="order-item">
-        <div class="item-info">
-          <h3>{{ item.name }}</h3>
-          <p class="item-details">
-            {{ item.size }} · {{ item.sugar }} · {{ item.ice }}
-            {% if item.addons %}<br>Add-ons: {{ item.addons | join(", ") }}{% endif %}
-          </p>
-          <p class="item-price">${{ "%.2f"|format(item.price) }} each</p>
-        </div>
-        <div class="item-actions">
-          <div class="qty">
-                <form method="POST" action="#">
-                <input type="hidden" name="key" value="{{ key }}">
-                <input type="hidden" name="action" value="decrease">
-                <button type="submit" class="qty-btn" aria-label="Decrease quantity">−</button>
-                </form>
-                <span class="qty-number">{{ item.quantity }}</span>
-                <form method="POST" action="#">
-                <input type="hidden" name="key" value="{{ key }}">
-                <input type="hidden" name="action" value="increase">
-                <button type="submit" class="qty-btn" aria-label="Increase quantity">+</button>
-                </form>
+    {% if cart %}
+    <div class="order-layout">
+        <section class="order-card">
+            <h2>Order Summary</h2>
+            <!-- this would show up if there item place in  a cart -->
+            {% for key, item in cart.items() %}
+            <div class="order-item">
+                <div class="item-info">
+                    <h3>{{ item.name }}</h3>
+                    <p class="item-details">
+                        {{ item.size }} · {{ item.sugar }} · {{ item.ice }}
+                        {% if item.addons %}<br>Add-ons: {{ item.addons | join(", ") }}{% endif %}
+                    </p>
+                    <p class="item-price">${{ "%.2f"|format(item.price) }} each</p>
+                </div>
+
+                <div class="item-actions">
+                    <div class="qty">
+                        <form method="POST" action="#">
+                            <input type="hidden" name="key" value="{{ key }}">
+                            <input type="hidden" name="action" value="decrease">
+                            <button type="submit" class="qty-btn" aria-label="Decrease quantity">−</button>
+                        </form>
+                        <span class="qty-number">{{ item.quantity }}</span>
+                        <form method="POST" action="#">
+                            <input type="hidden" name="key" value="{{ key }}">
+                            <input type="hidden" name="action" value="increase">
+                            <button type="submit" class="qty-btn" aria-label="Increase quantity">+</button>
+                        </form>
+                    </div>
+
+                    <p class="line-total">${{ "%.2f"|format(item.price * item.quantity) }}</p>
+
+                    <form method="POST" action="#">
+                        <input type="hidden" name="key" value="{{ key }}">
+                        <button type="submit" class="remove-btn">Remove</button>
+                    </form>
+                </div>
             </div>
-            <p class="line-total">${{ "%.2f"|format(item.price * item.quantity) }}</p>
-            <form method="POST" action="#">
-                <input type="hidden" name="key" value="{{ key }}">
-                <button type="submit" class="remove-btn">Remove</button>
+            {% endfor %}
+            <!-- If items meet the total price for quantity -->
+            {% if discount_applied %}
+            <p class="item-details">Subtotal: ${{ "%.2f"|format(subtotal) }} · Discount (10%): -${{ "%.2f"|format(discount_amount) }}</p>
+            {% endif %}
+
+            <div class="order-total">
+                <span>Total</span>
+                <span>${{ "%.2f"|format(total) }}</span>
+            </div>
+        </section>
+
+        <section class="order-card">
+            <h2>Your Details</h2>
+            <form method="POST" action="#" class="details-form">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="address">Delivery address</label>
+                <input type="text" id="address" name="address" required>
+
+                <fieldset>
+                    <legend>Payment method</legend>
+                    <label><input type="radio" name="payment" value="card" required> Card</label>
+                    <label><input type="radio" name="payment" value="cash"> Cash on delivery</label>
+                </fieldset>
+
+                <button type="submit" class="checkout-btn">Place order</button>
             </form>
-        </div>
-      </div>
-      {% endfor %}
-      {% if discount_applied %}
-      <p class="item-details">Subtotal: ${{ "%.2f"|format(subtotal) }} · Discount (10%): -${{ "%.2f"|format(discount_amount) }}</p>
-      {% endif %}
-      <div class="order-total">
-        <span>Total</span>
-        <span>${{ "%.2f"|format(total) }}</span>
-      </div>
+        </section>
+    </div>
+    <!-- if there is no item in a cart -->
+    {% else %}
+    <section class="order-card empty">
+        <p>Your order is empty.</p>
+        <a href="{{ url_for('menu') }}" class="checkout-btn">Back to menu</a>
     </section>
-  </div>
-    <!-- If there is no item yet in a cart -->
-  {% else %}
-  <section class="order-card empty">
-    <p>Your order is empty.</p>
-    <a href="{{ url_for('menu') }}" class="checkout-btn">Back to menu</a>
-  </section>
-  {% endif %}
-</d>
+    {% endif %}
+</div>
 {% endblock %}

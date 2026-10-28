@@ -1,5 +1,5 @@
 /* This are the left section */
-
+/* Order summary */
 .order-page {
   max-width: 1000px;
   margin: 0 auto;
@@ -104,3 +104,46 @@
 }
 
 /* This gonna be right section */
+/* Details form */
+.details-form { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 8px; 
+}
+
+.details-form input[type="email"],
+.details-form input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+.details-form fieldset {
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+ 
+.checkout-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #333;
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+.checkout-btn:hover { 
+  background: #111; 
+}
+ 
+.empty { 
+  text-align: center; 
+}
