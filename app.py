@@ -147,6 +147,27 @@ def remove_from_cart(drink):
     return redirect(url_for('menu'))
 
 
+@app.route("/checkout", methods=['POST'])
+def invoice():
+    customer_name = request.form['customer_name'].strip().title()
+
+    if not customer_name:
+        flash("Customer name is required.")
+        return redirect(url_for('order'))
+    cart = session.get('cart',{})
+    chosen_addons = session.get('chosen_addons', {})
+
+    if not cart:
+        flash("Select drink to continue.", "error")
+        return redirect(url_for('order'))
+    
+    total, drinks_subtotal, addon_subtotal, discount_applied, subtotal, discount_amount = calculate_total(cart)
+
+
+    return render_template ('order.html', customer_name=customer_name, cart=cart, chosen_addons=chosen_addons, total=total, drinks_subtotal=drinks_subtotal, addon_subtotal=addon_subtotal, discount_applied=discount_applied, subtotal=subtotal, discount_amount=discount_amount)
+
+
+
 @app.context_processor # ——— use to show the item in a cart to all html templates ——— #
 def inject_cart():
     cart = session.get('cart', {})
@@ -176,6 +197,15 @@ def calculate_total(cart):
 
     return total, drinks_subtotal, addon_subtotal, discount_applied, subtotal, discount_amount
 
+
+    # ——— FUNCTION CANCEL ORDER ——— #
+@app.route('/cancel_order', methods=['POST'])
+def cancel_order():
+    session.pop('cart', None)
+    session.pop('selected_addons', None)
+    flash("Your order has been cancelled.", "error")
+
+    return redirect(url_for('order'))
 
 # ——— ROUTE ——— #
 
