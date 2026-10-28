@@ -1,0 +1,106 @@
+/* This are the left section */
+
+.order-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.order-page h1 { 
+  margin-bottom: 20px; 
+}
+
+.order-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.order-card {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.order-card h2 { 
+  margin: 0 0 12px; 
+  font-size: 1.2rem; 
+}
+
+/* Items */
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.item-info h3 { 
+  margin: 0 0 4px; 
+  font-size: 1rem; 
+}
+
+.item-details, .item-price {
+ margin: 2px 0; 
+ font-size: 0.9rem; 
+ color: #666; 
+}
+
+.item-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.qty { display: flex; align-items: center; gap: 8px; }
+
+.qty form { 
+  margin: 0; 
+  }
+
+.qty-number { 
+  min-width: 20px; 
+  text-align: center; 
+  font-weight: 600; 
+}
+
+.qty-btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.qty-btn:hover { 
+  background: #f3f3f3; 
+}
+
+.line-total { 
+  margin: 0; 
+  font-weight: 600; 
+}
+
+.remove-btn {
+  border: none;
+  background: none;
+  color: #c0392b;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 16px;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+/* This gonna be right section */
