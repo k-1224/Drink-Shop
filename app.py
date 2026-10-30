@@ -1,4 +1,6 @@
 import json
+import datetime
+import sqlite3
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 
 app = Flask(__name__)
@@ -20,6 +22,25 @@ ice_levels = ['Full Ice (100%)', ' Half Ice (50%)', 'Less Ice (25%)','No Ice']
 
 
 # ——— LOADING DATA ——— #
+def initialise_database():
+    with sqlite3.connect('flower_shop.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute('''
+        CREATE TABLE IF NOT EXISTS orders (
+            order_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            invoice_number TEXT,
+            customer_name TEXT,
+            items TEXT,
+            addons TEXT,
+            total REAL,
+            date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+        ''')
+        conn.commit()
+
+
+
+
 def load_data():
         with open('data/latte.json') as file:
             lattes = json.load(file)
@@ -163,8 +184,29 @@ def invoice():
     
     total, drinks_subtotal, addon_subtotal, discount_applied, subtotal, discount_amount = calculate_total(cart)
 
+    invoice_date = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    invoice_number = f"INV_{customer_name.replace(' ', '_')}_{invoice_date}"
 
-    return render_template ('order.html', customer_name=customer_name, cart=cart, chosen_addons=chosen_addons, total=total, drinks_subtotal=drinks_subtotal, addon_subtotal=addon_subtotal, discount_applied=discount_applied, subtotal=subtotal, discount_amount=discount_amount)
+    with sqlite3.connect('drink_shop.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute('''
+        INSERT INTO orders (invoice_number, customer_name, items, addons, total)
+        VALUES (?,?,?,?,?)
+        ''', (invoice_number, customer_name, json.dumps(cart), json.dumps(chosen_addons), total))
+        conn.commit()
+    session.pop('cart', None)
+    session.pop('selected_addons', None)
+
+    invoice_filename = f"{invoice_number}.txt"
+
+    print(f"\nSaved order for: {customer_name}")
+    print(f"Cart: {cart}")
+    print(f"Add-ons: {chosen_addons}")
+    print(f"Total: {total}\n")
+
+
+
+    return render_template ('order.html', customer_name=customer_name, cart=cart, chosen_addons=chosen_addons, total=total, drinks_subtotal=drinks_subtotal, addon_subtotal=addon_subtotal, discount_applied=discount_applied, subtotal=subtotal, discount_amount=discount_amount, invoice_date=invoice_date, invoice_number=invoice_number)
 
 
 
@@ -222,14 +264,30 @@ def menu():
     
     return render_template("menu.html", lattes=lattes, milk_teas=milk_teas, fruit_teas=fruit_teas, addons=addons, sugar_levels=sugar_levels, ice_levels=ice_levels)
 
-
 @app.route("/order")
 def order():
     return render_template("order.html")
 
-@app.route("/order_history")
+
+@app.route('/order_history')
 def order_history():
-    return render_template("order_history.html")
+    with sqlite3.connect('flower_shop.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM orders ORDER BY date DESC")
+        rows = cursor.fetchall()
+        orders = []
+        for row in rows:
+            orders.append({
+                'order_id': row[0],
+                'invoice_number': row[1],
+                'customer_name': row[2],
+                'items': json.loads(row[3]),
+                'addons': json.loads(row[4]),
+                'total': row[5],
+                'date': row[6]
+                })
+    return render_template('order_history.html', orders=orders)
+
     
 
 @app.route("/contact")
