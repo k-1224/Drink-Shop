@@ -2,9 +2,8 @@
 
 {% block content %}
 <div class="order-page">
-    <h1>Your Order</h1>
-
     {% if cart %}
+    <h1>Your Order</h1>
     <div class="order-layout">
         <section class="order-card">
             <h2>Order Summary</h2>
@@ -73,16 +72,27 @@
                 </fieldset>
 
                 <button type="submit" class="checkout-btn" formaction="{{ url_for('invoice') }}">Place order</button>
-                <button type="submit" class="cancel-btn" formaction="{{ url_for('cancel_order') }}" onclick="return confirm('Are you sure you want to cancel your order?')">Cancel Order</button>
+                <button type="submit" class="cancel-btn" formaction="{{ url_for('remove_from_cart', drink=key) }}" onclick="return confirm('Are you sure you want to cancel your order?')">Cancel Order</button>
             </form>
         </section>
     </div>
     <!-- if there is no item in a cart -->
     {% else %}
-    <section class="order-card empty">
-        <p>Your order is empty.</p>
-        <a href="{{ url_for('menu') }}" class="checkout-btn">Back to menu</a>
-    </section>
+        <div class="empty-cart">
+            <svg class="bag" viewBox="0 0 100 110" width="110" height="120" fill="none"
+                stroke="#111" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M35 32v-8a15 15 0 0 1 30 0v8"/>    <!-- handle -->
+                <path d="M14 32h72l6 66H8z" fill="#fff"/>   <!-- bag body -->
+                <circle cx="38" cy="62" r="2.5" fill="#111"/>   <!--left eye-->
+                <circle cx="62" cy="62" r="2.5" fill="#111"/>   <!--right eye-->
+                <path d="M40 80q10-9 20 0"/>    <!-- frown -->
+            </svg>
+            <div class="shadow"></div>
+
+            <h2>Your cart is empty</h2>
+            <p>Add a drink from the menu to get started.</p>
+            <a href="{{ url_for('menu') }}" class="browse-btn">Browse menu</a>
+        </div>
     {% endif %}
 </div>
 {% endblock %}

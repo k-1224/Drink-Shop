@@ -1,9 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Mouse+Memoirs&family=Oi&family=Quicksand:wght@300..700&display=swap');
+:root {
+  --base-color: #FCF7F8;
+  --secondary-background: #F4E4D5;
+  --accent-color: #D98E4A;  
+  --cta-color: #C1440E;     
+  --primary-color: #0B2027;
+  --nav-bg-color: #F4E4D5;
+  --primary-background: #FCF7F8;
+  --extra-color: #B1C18E;
+  --extra2-color: #f9f2f3;
+
+  --font-1: "DynaPuff", system-ui;
+  --font-2: "Quicksand", sans-serif;
+  --font-3: "Mouse Memoirs", sans-serif;
+}
+
+
+
+
 /* This are the left section */
-/* Order summary */
+/* ORDER SUMMARY */
 .order-page {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 24px 16px 48px;
+  padding: 60px 16px 48px;
+  max-height: auto;
 }
 
 .order-page h1 { 
@@ -29,7 +50,7 @@
   font-size: 1.2rem; 
 }
 
-/* Items */
+/* ITEMS */
 .order-item {
   display: flex;
   justify-content: space-between;
@@ -104,7 +125,7 @@
 }
 
 /* This gonna be right section */
-/* Details form */
+/* DETAILS FORM */
 .details-form { 
   display: flex; 
   flex-direction: column; 
@@ -140,10 +161,86 @@
   text-decoration: none;
   cursor: pointer;
 }
+
 .checkout-btn:hover { 
   background: #111; 
 }
- 
-.empty { 
-  text-align: center; 
+
+.cancel-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #f3f3f3;
+  color: #333;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* EMPTY CART */
+
+.empty-cart {
+    text-align: center;
+    padding: 60px 20px;
+
+    h2 {
+      font-family: var(--font-3);
+      font-weight: 1000;
+      font-size: 2.4em;
+      margin: 0 0 6px;
+      color: #111;
+    }
+
+    p {
+      font-family: var(--font-2);
+      font-weight: medium;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      color: #666;
+    }
+
+    .browse-btn {
+      display: inline-block;
+      padding: 10px 26px;
+      border: 2px solid var(--accent-color);
+      font-family: var(--font-2);
+      background: var(--accent-color);
+      color: #fff;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+}
+    .browse-btn:hover { 
+      background: #cc8645c9; 
+}
+
+}
+
+.bag {
+    display: block;
+    margin: 0 auto;
+    animation: float 2.4s ease-in-out infinite;
+}
+
+.shadow {
+    width: 70px;
+    height: 8px;
+    margin: 6px auto 0;
+    background: #111;
+    border-radius: 50%;
+    opacity: 0.12;
+    animation: shadow 2.4s ease-in-out infinite;
+}
+
+/* BAG ANIMATION */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-12px); }
+}
+
+@keyframes shadow {
+    0%, 100% { transform: scaleX(1);   opacity: 0.12; }
+    50%      { transform: scaleX(0.7); opacity: 0.06; }
 }
