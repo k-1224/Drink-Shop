@@ -23,20 +23,24 @@ ice_levels = ['Full Ice (100%)', ' Half Ice (50%)', 'Less Ice (25%)','No Ice']
 
 # ——— LOADING DATA ——— #
 def initialise_database():
-    with sqlite3.connect('flower_shop.db') as conn:
+    with sqlite3.connect('drink_shop.db') as conn:
         cursor = conn.cursor()
         cursor.execute('''
         CREATE TABLE IF NOT EXISTS orders (
             order_id INTEGER PRIMARY KEY AUTOINCREMENT,
             invoice_number TEXT,
             customer_name TEXT,
+            customer_email TEXT,
+            address TEXT,
+            payment_method TEXT,
             items TEXT,
-            addons TEXT,
             total REAL,
             date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
         ''')
         conn.commit()
+
+initialise_database()
 
 
 
@@ -291,21 +295,24 @@ def order():
 
 @app.route('/order_history')
 def order_history():
-    with sqlite3.connect('flower_shop.db') as conn:
+    with sqlite3.connect('drink_shop.db') as conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM orders ORDER BY date DESC")
+        cursor.execute("SELECT order_id, invoice_number, customer_name, customer_email, address, payment_method, items, total, date FROM orders ORDER BY date DESC")
         rows = cursor.fetchall()
-        orders = []
-        for row in rows:
-            orders.append({
-                'order_id': row[0],
-                'invoice_number': row[1],
-                'customer_name': row[2],
-                'items': json.loads(row[3]),
-                'addons': json.loads(row[4]),
-                'total': row[5],
-                'date': row[6]
-                })
+
+    orders = []
+    for row in rows:
+        orders.append({
+            'order_id': row[0],
+            'invoice_number': row[1],
+            'customer_name': row[2],
+            'customer_email': row[3],
+            'address': row[4],
+            'payment_method': row[5],
+            'items': json.loads(row[6]),
+            'total': row[7],
+            'date': row[8]
+        })
     return render_template('order_history.html', orders=orders)
 
     
