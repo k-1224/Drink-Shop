@@ -175,17 +175,26 @@ def remove_from_cart(drink):
 @app.route("/checkout", methods=['POST'])
 def invoice():
     customer_name = request.form['customer_name'].strip().title()
+    customer_email = request.form['customer_email'].strip()
+    address = request.form['address'].strip()
+    payment_method = request.form['payment']
 
-    if not customer_name:
-        flash("Customer name is required.")
-        return redirect(url_for('order'))
-    cart = session.get('cart',{})
-    chosen_addons = session.get('chosen_addons', {})
+    cart = session.get('cart', {})
 
     if not cart:
         flash("Select drink to continue.", "error")
         return redirect(url_for('order'))
-    
+
+    if customer_name == "":
+        flash("Customer name is required.", "error")
+        return redirect(url_for('order'))
+
+    if payment_method == 'card':
+        card_number = request.form['card_number'].replace(' ', '')
+        if len(card_number) != 16 or not card_number.isdigit():
+            flash("Please enter a valid 16-digit card number.", "error")
+            return redirect(url_for('order'))
+
     total, drinks_subtotal, addon_subtotal, discount_applied, subtotal, discount_amount = calculate_total(cart)
 
     invoice_date = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
@@ -194,23 +203,14 @@ def invoice():
     with sqlite3.connect('drink_shop.db') as conn:
         cursor = conn.cursor()
         cursor.execute('''
-        INSERT INTO orders (invoice_number, customer_name, items, addons, total)
-        VALUES (?,?,?,?,?)
-        ''', (invoice_number, customer_name, json.dumps(cart), json.dumps(chosen_addons), total))
+        INSERT INTO orders (invoice_number, customer_name, customer_email, address, payment_method, items, total)
+        VALUES (?,?,?,?,?,?,?)
+        ''', (invoice_number, customer_name, customer_email, address, payment_method, json.dumps(cart), total))
         conn.commit()
+
     session.pop('cart', None)
-    session.pop('selected_addons', None)
-
-    invoice_filename = f"{invoice_number}.txt"
-
-    print(f"\nSaved order for: {customer_name}")
-    print(f"Cart: {cart}")
-    print(f"Add-ons: {chosen_addons}")
-    print(f"Total: {total}\n")
-
-
-
-    return render_template ('order.html', customer_name=customer_name, cart=cart, chosen_addons=chosen_addons, total=total, drinks_subtotal=drinks_subtotal, addon_subtotal=addon_subtotal, discount_applied=discount_applied, subtotal=subtotal, discount_amount=discount_amount, invoice_date=invoice_date, invoice_number=invoice_number)
+    flash(f"Thank you {customer_name}! Your order {invoice_number} has been placed.")
+    return redirect(url_for('order'))
 
 
 
