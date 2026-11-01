@@ -256,7 +256,11 @@ def update_quantity():
     cart = session.get('cart', {})
 
     if action == 'increase':
-        cart[key]['quantity'] += 1
+        if cart[key]['quantity'] >= 9:
+            flash("Maximum 9 per item. Call us for a special deal.", "error")
+        else:
+            cart[key]['quantity'] += 1
+
     elif action == 'decrease':
         cart[key]['quantity'] -= 1
         if cart[key]['quantity'] == 0:
