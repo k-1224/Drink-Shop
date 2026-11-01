@@ -21,13 +21,13 @@
 
                 <div class="item-actions">
                     <div class="qty">
-                        <form method="POST" action="#">
+                        <form method="POST" action="{{ url_for('update_quantity') }}">
                             <input type="hidden" name="key" value="{{ key }}">
                             <input type="hidden" name="action" value="decrease">
                             <button type="submit" class="qty-btn" aria-label="Decrease quantity">−</button>
                         </form>
                         <span class="qty-number">{{ item.quantity }}</span>
-                        <form method="POST" action="#">
+                        <form method="POST" action="{{ url_for('update_quantity') }}">
                             <input type="hidden" name="key" value="{{ key }}">
                             <input type="hidden" name="action" value="increase">
                             <button type="submit" class="qty-btn" aria-label="Increase quantity">+</button>
@@ -36,7 +36,7 @@
 
                     <p class="line-total">${{ "%.2f"|format(item.price * item.quantity) }}</p>
 
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{ url_for('cancel_order') }}">
                         <input type="hidden" name="key" value="{{ key }}">
                         <button type="submit" class="remove-btn">Remove</button>
                     </form>

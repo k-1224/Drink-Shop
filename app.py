@@ -249,6 +249,22 @@ def cancel_order():
 
     return redirect(url_for('order'))
 
+@app.route('/update_quantity', methods=['POST'])
+def update_quantity():
+    key = request.form['key']
+    action = request.form['action']
+    cart = session.get('cart', {})
+
+    if action == 'increase':
+        cart[key]['quantity'] += 1
+    elif action == 'decrease':
+        cart[key]['quantity'] -= 1
+        if cart[key]['quantity'] == 0:
+            del cart[key]
+
+    session['cart'] = cart
+    return redirect(url_for('order'))
+
 # ——— ROUTE ——— #
 
 @app.route("/")
