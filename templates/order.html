@@ -53,29 +53,79 @@
                 <span>${{ "%.2f"|format(total) }}</span>
             </div>
         </section>
-
         <section class="order-card">
             <h2>Your Details</h2>
-            <form method="POST" action="#" class="details-form">
+            <form method="POST" action="{{ url_for('invoice') }}" class="details-form">
                 <label for="customer_name_">Your Name:</label>
-                <input type="text" name="customer_name" id="customer_name_checkout" required>
+                <input type="text" name="customer_name" id="customer_name" required>
+
                 <label for="customer_email">Email</label>
-                <input type="email" id="email" name="customer_email" required>
+                <input type="email" id="customer_email" name="customer_email" required>
 
                 <label for="address">Delivery address</label>
                 <input type="text" id="address" name="address" required>
 
                 <fieldset>
                     <legend>Payment method</legend>
-                    <label><input type="radio" name="payment" value="card" required> Card</label>
-                    <label><input type="radio" name="payment" value="cash"> Cash on delivery</label>
+                    <label><input type="radio" name="payment" id="pay-card" value="card" required> Card</label>
+                    <label><input type="radio" name="payment" id="pay-cash" value="cash"> Cash on delivery</label>
                 </fieldset>
 
-                <button type="submit" class="checkout-btn" formaction="{{ url_for('invoice') }}">Place order</button>
-                <button type="submit" class="cancel-btn" formaction="{{ url_for('remove_from_cart', drink=key) }}" onclick="return confirm('Are you sure you want to cancel your order?')">Cancel Order</button>
+                 <!-- shows when Card is clicked -->
+                <div id="card-details" class="payment-details">
+                    <label for="card_number">Card number</label>
+                    <input type="text" name="card_number" id="card_number" placeholder="1234 5678 9012 3456" maxlength="19">
+
+                    <label for="card_expiry">Expiry date</label>
+                    <input type="text" name="card_expiry" id="card_expiry" placeholder="MM/YY" maxlength="5">
+
+                    <label for="card_cvv">CVV</label>
+                    <input type="password" name="card_cvv" id="card_cvv" placeholder="123" maxlength="4">
+                </div>
+
+                <!-- shows when Cash on delivery is clicked -->
+                <div id="cash-details" class="payment-details">
+                    <p>Please pay in cash when your drinks arrive. Have the exact amount ready if you can.</p>
+                </div>
+
+                <button type="submit" class="checkout-btn">Place order</button>
+                <button type="submit" class="cancel-btn" formaction="{{ url_for('cancel_order') }}" formnovalidate onclick="return confirm('Are you sure you want to cancel your order?')">Cancel Order</button>
             </form>
         </section>
     </div>
+    <script>
+        var cardRadio = document.getElementById("pay-card");
+        var cashRadio = document.getElementById("pay-cash");
+        var cardBox = document.getElementById("card-details");
+        var cashBox = document.getElementById("cash-details");
+
+        function showPaymentInfo() {
+            if (cardRadio.checked) {
+                cardBox.classList.add("show");
+                cashBox.classList.remove("show");
+            } else {
+                cardBox.classList.remove("show");
+                cashBox.classList.add("show");
+            }
+
+            // the card boxes are only required when Card is chosen
+            document.getElementById("card_number").required = cardRadio.checked;
+            document.getElementById("card_expiry").required = cardRadio.checked;
+            document.getElementById("card_cvv").required = cardRadio.checked;
+        }
+
+        cardRadio.addEventListener("change", showPaymentInfo);
+        cashRadio.addEventListener("change", showPaymentInfo);
+    </script>
+            {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}    
+            </ul>
+        {% endif %}
+        {% endwith %}
     <!-- if there is no item in a cart -->
     {% else %}
         <div class="empty-cart">
