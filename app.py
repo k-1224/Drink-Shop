@@ -273,6 +273,18 @@ def update_quantity():
     session['cart'] = cart
     return redirect(url_for('order'))
 
+@app.route('/remove_item', methods=['POST'])
+def remove_item():
+    key = request.form['key']
+    cart = session.get('cart', {})
+
+    if key in cart:
+        del cart[key]
+        session['cart'] = cart
+        flash("Item removed from cart.")
+
+    return redirect(url_for('order'))
+
 # ——— ROUTE ——— #
 
 @app.route("/")

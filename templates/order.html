@@ -33,10 +33,8 @@
                             <button type="submit" class="qty-btn" aria-label="Increase quantity">+</button>
                         </form>
                     </div>
-
                     <p class="line-total">${{ "%.2f"|format(item.price * item.quantity) }}</p>
-
-                    <form method="POST" action="{{ url_for('cancel_order') }}">
+                    <form method="POST" action="{{ url_for('remove_item') }}">
                         <input type="hidden" name="key" value="{{ key }}">
                         <button type="submit" class="remove-btn">Remove</button>
                     </form>
@@ -93,6 +91,7 @@
             </form>
         </section>
     </div>
+    <!-- when user click the radio input, an info will appear-->
     <script>
         var cardRadio = document.getElementById("pay-card");
         var cashRadio = document.getElementById("pay-cash");
@@ -107,7 +106,7 @@
                 cardBox.classList.remove("show");
                 cashBox.classList.add("show");
             }
-
+            
             // the card boxes are only required when Card is chosen
             document.getElementById("card_number").required = cardRadio.checked;
             document.getElementById("card_expiry").required = cardRadio.checked;
