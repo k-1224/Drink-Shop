@@ -131,12 +131,18 @@
 }
 
 .details-form input[type="email"],
-.details-form input[type="text"] {
-  padding: 10px;
+.details-form input[type="text"],
+.details-form input[type="password"] {
+  width: 100%;
+  height: 42px;
+  padding: 0 10px;
+  box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
+  font-family: inherit;
 }
+
 .details-form fieldset {
   border: 1px solid #e5e5e5;
   border-radius: 6px;
@@ -252,7 +258,6 @@
   flex-direction: column;
   gap: 8px;
   padding: 12px;
-  background: var(--secondary-background);
   border-radius: 6px;
 }
 
@@ -262,4 +267,36 @@
 
 .payment-details p {
   margin: 0;
+}
+
+
+
+/*  */
+
+.order-success {
+  text-align: center;
+  background: var(--extra-color);
+  border-radius: 10px;
+  padding: 32px 24px;
+}
+
+.order-success h2 {
+  margin: 0 0 8px;
+}
+
+.order-success p {
+  margin: 4px 0;
+}
+
+.success-btn {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 26px;
+  background: var(--accent-color);
+  color: #fff;
+  text-decoration: none;
+}
+
+.success-btn:hover {
+  background: #cc8645c9;
 }

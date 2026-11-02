@@ -140,6 +140,7 @@ footer {
   justify-content: center;
   flex-direction: column;
   font-family: var(--font-1);
+  margin-top: auto;
 }
 
 .footer-first li,

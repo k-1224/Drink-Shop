@@ -209,7 +209,7 @@ def invoice():
         conn.commit()
 
     session.pop('cart', None)
-    flash(f"Thank you {customer_name}! Your order {invoice_number} has been placed.")
+    session['order_placed'] = {'name': customer_name, 'invoice': invoice_number}
     return redirect(url_for('order'))
 
 
@@ -236,7 +236,7 @@ def calculate_total(cart):
     discount_amount = 0
     total = subtotal
 
-    if subtotal > 180:
+    if subtotal > 90:
         discount_amount = subtotal * 0.1
         total = subtotal - discount_amount
         discount_applied = True
@@ -302,7 +302,8 @@ def menu():
 
 @app.route("/order")
 def order():
-    return render_template("order.html")
+    order_placed = session.pop('order_placed', None)
+    return render_template("order.html", order_placed=order_placed)
 
 
 @app.route('/order_history')

@@ -2,7 +2,14 @@
 
 {% block content %}
 <div class="order-page">
-    {% if cart %}
+    {% if order_placed %}
+    <div class="order-success">
+        <h2>Thank you, {{ order_placed.name }}!</h2>
+        <p>Your order has been placed successfully.</p>
+        <p>Invoice: {{ order_placed.invoice }}</p>
+        <a href="{{ url_for('menu') }}" class="success-btn">Back to menu</a>
+    </div>
+    {% elif cart %}
     <h1>Your Order</h1>
     <div class="order-layout">
         <section class="order-card">
