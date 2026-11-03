@@ -413,67 +413,95 @@
 
 /* ORDER HISTORY */
 .history-page {
-  max-width: 1000px;
-  margin: 0 auto;
   padding: 60px 16px 48px;
 }
 
+.history-page h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #4B5C35;
+}
+
 .history {
-  overflow-x: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .history table {
-  width: 100%;
+  width: 90%;
   border-collapse: collapse;
-  background: #fff;
+  background-color: var(--base-color);
+  table-layout: fixed;
 }
 
 .history th,
 .history td {
   padding: 12px;
-  border-bottom: 1px solid #eee;
-  text-align: left;
   vertical-align: top;
+  border: 1px solid var(--secondary-background);
+  overflow-wrap: anywhere;
 }
 
 .history th {
-  background: var(--secondary-background);
+  background-color: #f0f0f0;
+  border: 1px solid var(--cta-color);
 }
 
-.history ul {
-  margin: 0;
-  padding-left: 18px;
+.history th:nth-child(3) {
+  width: 30%;
+}
+
+.history tr:nth-child(even) {
+  background-color: var(--base-color);
+}
+
+.history tr:nth-child(odd) {
+  background-color: #f0f0f0;
+}
+
+.history tr:hover {
+  background-color: rgba(217, 142, 74, 0.15);
+}
+
+.history li {
+  list-style-type: none;
 }
 
 .td-button {
-  white-space: nowrap;
+  text-align: center;
 }
 
 .order-form {
-  display: inline;
+  display: flex;
+  justify-content: center;
 }
 
 .action {
   display: inline-block;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background: #fff;
-  color: #333;
-  font-size: 0.9rem;
+  margin: 2px 0;
+  border: none;
+  color: white;
+  background-color: var(--cta-color);
+  padding: 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
   text-decoration: none;
   cursor: pointer;
 }
 
 .action:hover {
-  background: #f3f3f3;
+  background-color: #a33a0c;
 }
 
-.flashes {
+/* flash messages */
+.history-page .flashes {
+  padding-left: 10px;
+  color: rgb(137, 202, 114);
+  font-weight: bold;
   list-style: none;
-  padding: 0;
 }
 
-.flashes .error {
-  color: #c0392b;
+.history-page .error {
+  color: rgb(202, 114, 114);
 }
