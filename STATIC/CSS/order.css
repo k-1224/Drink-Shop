@@ -411,3 +411,69 @@
   to { stroke-dashoffset: 0; }
 }
 
+/* ORDER HISTORY */
+.history-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 16px 48px;
+}
+
+.history {
+  overflow-x: auto;
+}
+
+.history table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.history th,
+.history td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+  vertical-align: top;
+}
+
+.history th {
+  background: var(--secondary-background);
+}
+
+.history ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.td-button {
+  white-space: nowrap;
+}
+
+.order-form {
+  display: inline;
+}
+
+.action {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.action:hover {
+  background: #f3f3f3;
+}
+
+.flashes {
+  list-style: none;
+  padding: 0;
+}
+
+.flashes .error {
+  color: #c0392b;
+}
