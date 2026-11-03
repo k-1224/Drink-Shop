@@ -1,7 +1,8 @@
+import os
 import json
 import datetime
 import sqlite3
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, Response
 
 app = Flask(__name__)
 app.secret_key = 'drink143'
@@ -328,7 +329,61 @@ def order_history():
         })
     return render_template('order_history.html', orders=orders)
 
-    
+@app.route("/invoice/<invoice_number>/download")
+def download_invoice(invoice_number):
+    # 1. get the order from the database
+    with sqlite3.connect('drink_shop.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT invoice_number, customer_name, items, total, date FROM orders WHERE invoice_number = ?",
+            (invoice_number,)
+        )
+        row = cursor.fetchone()
+
+    if row is None:
+        flash("Invoice not found.", "error")
+        return redirect(url_for('order_history'))
+
+    items = json.loads(row[2])
+    total = row[3]
+
+    # write the invoice text
+    text = "---- Nomolicious Invoice ----\n\n"
+    text += f"Invoice Number: {row[0]}\n"
+    text += f"Customer Name: {row[1]}\n"
+    text += f"Date: {row[4]}\n\n"
+    text += "Items:\n"
+
+    subtotal = 0
+    for key, item in items.items():
+        line_total = item['quantity'] * item['price']
+        subtotal += line_total
+        text += f"-{item['name']} ({item['size']}, {item['sugar']}, {item['ice']}): {item['quantity']} x ${item['price']:.2f} = ${line_total:.2f}\n"
+        if item['addons']:
+            text += f"   Add-ons: {', '.join(item['addons'])}\n"
+
+    discount = subtotal - total
+    text += "\n"
+    if discount > 0.01:
+        text += f"Subtotal: ${subtotal:.2f}\n"
+        text += f"Discount (10%): -${discount:.2f}\n"
+    text += f"Total: ${total:.2f}"
+
+    #  send it as a download, response are required to dl it
+    return Response(
+        text,
+        mimetype="text/plain",
+        headers={"Content-Disposition": f"attachment; filename={row[0]}.txt"}
+    )
+
+@app.route('/cancel_saved_order/<int:order_id>', methods=['POST'])
+def cancel_saved_order(order_id):
+    with sqlite3.connect('drink_shop.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM orders WHERE order_id = ?", (order_id,))
+        conn.commit()
+    flash("Order cancelled.", "error")
+    return redirect(url_for('order_history'))
 
 @app.route("/contact")
 def contact():
