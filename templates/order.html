@@ -4,11 +4,21 @@
 <div class="order-page">
     {% if order_placed %}
     <div class="order-success">
+        <svg class="success-check" viewBox="0 0 52 52" aria-hidden="true">
+            <circle class="check-circle" cx="26" cy="26" r="24"/>
+            <path class="check-mark" d="M14 27l8 8 16-17"/>
+        </svg>
         <h2>Thank you, {{ order_placed.name }}!</h2>
-        <p>Your order has been placed.</p>
-        <p>Invoice: {{ order_placed.invoice }}</p>
-        <a href="{{ url_for('order_history') }}" class="success-btn">View order</a>
-        <a href="{{ url_for('menu') }}" class="success-btn">Back to menu</a>
+        <p class="success-sub">Your order has been placed.</p>
+        <div class="invoice-box">
+            <span class="invoice-label">Invoice</span>
+            <span class="invoice-number">{{ order_placed.invoice }}</span>
+        </div>
+        <div class="success-actions">
+            <a href="{{ url_for('order_history') }}" class="success-btn">View order</a>
+            <a href="{{ url_for('menu') }}" class="success-btn secondary">Back to menu</a>
+        </div>
+        <p class="success-note">You can download your invoice from your order history.</p>
     </div>
     {% elif cart %}
     <h1>Your Order</h1>

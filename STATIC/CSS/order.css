@@ -35,6 +35,8 @@
   align-items: start;
 }
 
+
+
 .order-card {
   background: #fff;
   border: 1px solid #e5e5e5;
@@ -270,41 +272,142 @@
 }
 
 
-
 /* ORDER SUCCESS */
 .order-success {
-  max-width: 450px;
-  margin: 0 auto;
-  padding: 40px;
+  max-width: 460px;
+  margin: 40px auto 0;
+  padding: 44px 36px 32px;
   background: #fff;
   border: 1px solid #e5e5e5;
-  border-radius: 10px;
+  border-top: 6px solid var(--extra-color);
+  border-radius: 14px;
   text-align: center;
+  box-shadow: 0 10px 30px rgba(11, 32, 39, 0.08);
+  animation: success-pop 0.5s ease-out;
 }
 
 .order-success h2 {
-  margin: 0 0 12px;
-  font-size: 1.4rem;
+  margin: 18px 0 6px;
+  font-family: var(--font-3);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--primary-color);
 }
 
-.order-success p {
-  margin: 6px 0;
+.success-sub {
+  margin: 0;
+  font-family: var(--font-2);
+  font-size: 1.1rem;
   color: #666;
+}
+
+/* Animated checkmark */
+.success-check {
+  width: 84px;
+  height: 84px;
+}
+
+.check-circle {
+  fill: var(--extra-color);
+  stroke: none;
+  opacity: 0.25;
+}
+
+.check-mark {
+  fill: none;
+  stroke: #5f7a3a;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: draw-check 0.5s ease-out 0.35s forwards;
+}
+
+/* Invoice */
+.invoice-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 24px 0 4px;
+  padding: 14px 16px;
+  background: var(--secondary-background);
+  border: 1px dashed var(--accent-color);
+  border-radius: 10px;
+}
+
+.invoice-label {
+  font-family: var(--font-2);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a6a4a;
+}
+
+.invoice-number {
+  font-family: var(--font-2);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-color);
   overflow-wrap: anywhere;
 }
 
+/* Two buttons: one primary, one secondary */
+.success-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 26px;
+}
+
 .success-btn {
-  display: inline-block;
-  margin: 20px 4px 0;
-  padding: 10px 20px;
-  background: var(--accent-color);
-  border-radius: 6px;
+  flex: 1 1 150px;
+  padding: 12px 22px;
+  background: var(--cta-color);
+  border: 2px solid var(--cta-color);
+  border-radius: 8px;
+  font-family: var(--font-2);
+  font-size: 1rem;
+  font-weight: 600;
   color: #fff;
+  text-align: center;
   text-decoration: none;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
 }
 
 .success-btn:hover {
-  background: #cc8645c9;
+  background: #a33a0c;
+  border-color: #a33a0c;
+  transform: translateY(-1px);
 }
 
+.success-btn.secondary {
+  background: transparent;
+  color: var(--cta-color);
+}
+
+.success-btn.secondary:hover {
+  background: var(--secondary-background);
+  border-color: var(--cta-color);
+  color: var(--cta-color);
+}
+
+.success-btn:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.success-note {
+  margin: 18px 0 0;
+  font-family: var(--font-2);
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* Animations */
+@keyframes draw-check {
+  to { stroke-dashoffset: 0; }
+}
 
