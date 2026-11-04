@@ -413,95 +413,168 @@
 
 /* ORDER HISTORY */
 .history-page {
-  padding: 60px 16px 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 24px 64px;
 }
 
 .history-page h2 {
+  margin: 0 0 24px;
+  font-family: var(--font-3);
+  font-size: 2.6rem;
+  font-weight: 400;
+  color: var(--primary-color);
+}
+
+/* empty state */
+.history-page > p {
+  padding: 48px 0;
   text-align: center;
-  margin-bottom: 20px;
-  color: #4B5C35;
-}
-
-.history {
-  display: flex;
-  justify-content: center;
-}
-
-.history table {
-  width: 90%;
-  border-collapse: collapse;
-  background-color: var(--base-color);
-  table-layout: fixed;
-}
-
-.history th,
-.history td {
-  padding: 12px;
-  vertical-align: top;
-  border: 1px solid var(--secondary-background);
-  overflow-wrap: anywhere;
-}
-
-.history th {
-  background-color: #f0f0f0;
-  border: 1px solid var(--cta-color);
-}
-
-.history th:nth-child(3) {
-  width: 30%;
-}
-
-.history tr:nth-child(even) {
-  background-color: var(--base-color);
-}
-
-.history tr:nth-child(odd) {
-  background-color: #f0f0f0;
-}
-
-.history tr:hover {
-  background-color: rgba(217, 142, 74, 0.15);
-}
-
-.history li {
-  list-style-type: none;
-}
-
-.td-button {
-  text-align: center;
-}
-
-.order-form {
-  display: flex;
-  justify-content: center;
-}
-
-.action {
-  display: inline-block;
-  margin: 2px 0;
-  border: none;
-  color: white;
-  background-color: var(--cta-color);
-  padding: 14px;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 1rem;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.action:hover {
-  background-color: #a33a0c;
+  font-family: var(--font-2);
+  font-size: 1.1rem;
+  color: #666;
 }
 
 /* flash messages */
 .history-page .flashes {
-  padding-left: 10px;
-  color: rgb(137, 202, 114);
-  font-weight: bold;
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+.history-page .flashes li {
+  margin-bottom: 8px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #eaf3de;
+  color: #27500a;
+  font-family: var(--font-2);
+}
+
+.history-page .flashes li.error {
+  background: #fcebeb;
+  color: #a32d2d;
+}
+
+/* table card */
+.history {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.history table {
+  width: 100%;
+  min-width: 900px;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-family: var(--font-2);
+  font-size: 0.95rem;
+  color: var(--primary-color);
+}
+
+.history th {
+  padding: 14px 20px;
+  background: var(--secondary-background);
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a6a4a;
+}
+
+.history td {
+  padding: 20px;
+  vertical-align: top;
+  border-top: 1px solid #eee;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.history tbody tr:hover {
+  background: var(--base-color);
+}
+
+/* column widths */
+.history th:nth-child(1) { width: 17%; }
+.history th:nth-child(2) { width: 12%; }
+.history th:nth-child(3) { width: 27%; }
+.history th:nth-child(4) { width: 10%; }
+.history th:nth-child(5) { width: 9%; }
+.history th:nth-child(6) { width: 12%; }
+.history th:nth-child(7) { width: 13%; }
+
+/* column details */
+.history td:nth-child(1) {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.history td:nth-child(5) {
+  font-weight: 700;
+}
+
+.history td:nth-child(6) {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* items list */
+.history ul {
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
 
-.history-page .error {
-  color: rgb(202, 114, 114);
+.history li {
+  margin-bottom: 12px;
+  list-style: none;
+}
+
+.history li:last-child {
+  margin-bottom: 0;
+}
+
+/* action buttons */
+.td-button {
+  text-align: center;
+}
+
+.action {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid var(--cta-color);
+  border-radius: 8px;
+  background: var(--cta-color);
+  font-family: var(--font-2);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.action:hover {
+  background: #a33a0c;
+  border-color: #a33a0c;
+}
+
+.order-form {
+  margin: 8px 0 0;
+}
+
+.order-form .action {
+  background: #fff;
+  border-color: #e5e5e5;
+  color: #c0392b;
+}
+
+.order-form .action:hover {
+  background: #fdf0ee;
+  border-color: #c0392b;
 }
