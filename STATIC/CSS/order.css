@@ -148,14 +148,25 @@
 .details-form input[type="email"],
 .details-form input[type="text"],
 .details-form input[type="password"] {
-  width: 100%;
-  height: 42px;
-  padding: 0 10px;
   box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-family: inherit;
+  width: 100%;
+  padding: 13px 16px;
+  border: 2px solid var(--secondary-background);
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: var(--font-2);
+  color: var(--primary-color);
+  background-color: var(--secondary-background);
+  outline: none;
+}
+
+.details-form input[type="email"]:focus,
+.details-form input[type="text"]:focus,
+.details-form input[type="password"]:focus {
+  border-color: var(--accent-color);
+  background-color: var(--base-color);
+
+
 }
 
 .details-form fieldset {
@@ -168,35 +179,47 @@
 }
  
 .checkout-btn {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 12px;
+  width: 100%;
+  padding: 14px 24px;
   border: none;
-  border-radius: 6px;
-  background: #333;
-  color: #fff;
-  font-size: 1rem;
-  text-align: center;
-  text-decoration: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font-2);
+  color: var(--base-color);
+  background-color: var(--accent-color);
   cursor: pointer;
 }
 
 .checkout-btn:hover { 
-  background: #111; 
+  opacity: 0.9;
 }
 
 .cancel-btn {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 12px;
+  width: 100%;
+  padding: 14px 24px;
   border: none;
-  border-radius: 6px;
-  background: #f3f3f3;
-  color: #333;
-  font-size: 1rem;
-  text-align: center;
-  text-decoration: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font-2);
+  color: var(--base-color);
+  background-color: var(--cta-color);
   cursor: pointer;
+}
+
+.cancel-btn:hover {
+  width: 100%;
+  padding: 14px 24px;
+  border: 2px solid var(--cta-color);
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font-2);
+  color: var(--cta-color);
+  background-color: var(--base-color);
+  cursor: pointer;
+  
 }
 
 /* EMPTY CART */
@@ -282,6 +305,12 @@
 
 .payment-details p {
   margin: 0;
+  padding: 16px 18px;
+  font-size: 0.9em;
+  line-height: 1.7;
+  background-color: var(--secondary-background);
+  border-left: 4px solid var(--accent-color);
+  border-radius: 8px;
 }
 
 

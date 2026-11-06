@@ -21,7 +21,7 @@
         <p class="success-note">You can download your invoice from your order history which can be found by clicking the account icon.</p>
     </div>
     {% elif cart %}
-    <h1>Your Order</h1>
+    <h1 class="headline">Your Order</h1>
     <div class="order-layout">
         <section class="order-card">
             <h2>Order Summary</h2>
@@ -73,13 +73,13 @@
             <h2>Your Details</h2>
             <form method="POST" action="{{ url_for('invoice') }}" class="details-form">
                 <label for="customer_name_">Your Name:</label>
-                <input type="text" name="customer_name" id="customer_name" required>
+                <input type="text" name="customer_name" id="customer_name" placeholder="Maria" required>
 
                 <label for="customer_email">Email</label>
-                <input type="email" id="customer_email" name="customer_email" required>
+                <input type="email" id="customer_email" name="customer_email" placeholder="name@example.com" required>
 
                 <label for="address">Delivery address</label>
-                <input type="text" id="address" name="address" required>
+                <input type="text" id="address" name="address" placeholder="flat bush" required>
 
                 <fieldset>
                     <legend>Payment method</legend>
