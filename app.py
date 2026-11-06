@@ -168,7 +168,7 @@ def remove_from_cart(drink):
         session['cart'] = cart
         flash(f"Removed {drink} from the cart.", "error")
     else:
-        flash("Item not found in cart")
+        flash("drink not found in cart")
 
     return redirect(url_for('menu'))
 
@@ -282,7 +282,7 @@ def remove_item():
     if key in cart:
         del cart[key]
         session['cart'] = cart
-        flash("Item removed from cart.")
+        flash(f"Removed {key} from the cart.", "error")
 
     return redirect(url_for('order'))
 

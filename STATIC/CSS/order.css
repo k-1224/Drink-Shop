@@ -20,12 +20,22 @@
 
 /* This are the left section */
 /* ORDER SUMMARY */
+
 .order-page {
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
   padding: 60px 16px 48px;
   box-sizing: border-box;
+  font-family: var(--font-2);
+
+  .headline {
+    margin: 0 0 24px;
+    font-family: var(--font-3);
+    font-size: 2.6rem;
+    font-weight: 400;
+    color: var(--primary-color);
+  }
 }
 
 .order-layout {
@@ -46,8 +56,9 @@
 }
 
 .order-card h2 { 
+  font-family: var(--font-2);
   margin: 0 0 12px; 
-  font-size: 1.2rem; 
+  font-size: 1.8rem; 
 }
 
 /* ITEMS */
@@ -60,8 +71,10 @@
 }
 
 .item-info h3 { 
+  font-family: var(--font-3);
+  font-weight: 300;
+  font-size: 1.6em;
   margin: 0 0 4px; 
-  font-size: 1rem; 
 }
 
 .item-details, .item-price {
@@ -494,7 +507,7 @@
 }
 
 .history tbody tr:hover {
-  background: var(--base-color);
+  background: #f3eae2ca;
 }
 
 /* column widths */
