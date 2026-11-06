@@ -528,3 +528,103 @@ img {
 
 /* ---------------- END OF INDEX ---------------- */
 
+
+
+
+/* ============== MOBILE MEDIA QUERY ============== */
+
+  /* ===== NAVIGATION & FOOTER BAR =====*/
+@media (max-width: 768px) {
+
+  header {
+    height: auto;            
+    flex-wrap: wrap;
+    padding: 10px 16px;
+    gap: 6px;
+  }
+
+  header h2 {
+    font-size: 1.8em;          /* smaller logo so the icons stay beside it */
+  }
+
+  nav {
+    order: 3;                  /* nav goes under the logo and icons */
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  nav a {
+    margin: 0;               
+    font-size: 1em;
+  }
+
+  /* ----- CART POPOVER: always fits inside the screen ----- */
+  #popover-bag {
+    box-sizing: border-box;    /* padding counts inside the width */
+    width: 92vw !important;
+    max-width: 350px !important;
+    max-height: 80vh;
+    overflow-y: auto;
+    left: auto;
+    right: 4vw;
+    top: 110px;
+  }
+
+  /* ----- FOOTER: One Column ----- */
+  .footer-first {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .footer-webtitle,
+  .footer-drinks,
+  .footer-pages,
+  .footer-question {
+    padding: 0 16px;           
+  }
+
+  /* ==== HOME: Hero ==== */
+  .hero-section {
+    grid-template-columns: 1fr;
+    padding: 24px 16px;
+    gap: 24px;
+  }
+
+  .hero-image img {
+    height: 220px;
+  }
+
+  /* ----- HOME: Drink Cards ----- */
+  .featured-cards-section {
+    padding: 24px 16px;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .drink-card img {
+    height: 170px;
+  }
+
+  /* ----- HOME: About ----- */
+  .about-section {
+    grid-template-columns: 1fr;
+    padding: 24px 16px;
+    gap: 24px;
+  }
+
+  .about-image img {
+    height: 220px;
+  }
+
+  /* ----- HOME: FAQ ----- */
+  .faq-section {
+    margin: 24px 16px;
+  }
+
+  .accordion {
+    font-size: 1.4rem;
+    padding: 6px 14px;
+  }
+}
