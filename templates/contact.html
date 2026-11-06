@@ -1,5 +1,75 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block title %}Nomolicious {% endblock %}
+{% block content %}
+<div class="contact-page">
+  <div class="contact-container">
 
-{%block content %} {% endblock %}
+    <!-- LEFT SIDE -->
+    <div class="contact-left">
+      <h1>Get In Touch</h1>
+      <div class="contact-icon">
+        <div class="contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <p>09 123 4567</p>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <p>hello@nomolicious.co.nz</p>
+        </div>
+        <div class="contact-item">
+          <i class="fa-regular fa-clock"></i>
+          <p>Mon - Sun | 10:00 AM - 9:00 PM</p>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-map"></i>
+          <p>124 Saint George Street <br> Manukau City, Auckland</p>
+        </div>
+      </div>
+      <p class="contact-note">Questions about an order? Include your invoice number in your message.</p>
+    </div>
+
+    <hr>
+
+    <!-- RIGHT SIDE -->
+    <div class="contact-right">
+      <h1>Send Us a Message</h1>
+      <div class="contact-container2">
+
+        {% if success %}
+        <p class="success-message">Thanks {{ name }}, your message has been sent!</p>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('contact') }}">
+          <div class="form-above">
+            <div class="form-field">
+              <label for="firstname">First name</label>
+              <input type="text" id="firstname" name="firstname" placeholder="Maria" required>
+            </div>
+            <div class="form-field">
+              <label for="lastname">Last name</label>
+              <input type="text" id="lastname" name="lastname" placeholder="Santos" required>
+            </div>
+          </div>
+          <div class="form-below">
+            <div class="form-field">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" placeholder="name@example.com" required>
+            </div>
+            <div class="form-field">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="e.g. Question about my drink order" required>
+            </div>
+            <div class="form-field">
+              <label for="feedback">Feedback</label>
+              <textarea id="feedback" name="feedback" rows="6" placeholder="Tell us about your drinks or your order..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send message</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
