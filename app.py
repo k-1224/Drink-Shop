@@ -426,6 +426,7 @@ def contact():
             f"Hi {name},\n\n"
             "Thanks for contacting Nomolicious! We've received your message "
             "and will get back to you soon.\n\n"
+            f"Your subject:\n{subject}\n\n"
             f"Your message:\n{feedback}\n\n"
             "- The Nomolicious Team"
         )
