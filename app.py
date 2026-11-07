@@ -29,6 +29,7 @@ MAIL_PASSWORD = "pqtbpsssimewklab"
 
 # ——— LOADING DATA ——— #
 def initialise_database():
+    """Create the orders table if it does not exist yet."""
     with sqlite3.connect('drink_shop.db') as conn:
         cursor = conn.cursor()
         cursor.execute('''
@@ -52,21 +53,22 @@ initialise_database()
 
 
 def load_data():
-        with open('data/latte.json') as file:
-            lattes = json.load(file)
-        with open('data/milktea.json') as file:
-            milk_teas = json.load(file)
-        with open('data/fruittea.json') as file:
-            fruit_teas = json.load(file)
-        with open('data/addons.json') as file:
-            addons = json.load(file)
-        return lattes, milk_teas, fruit_teas, addons
+    """Load the three drink menus and the add-ons from the data JSON file."""
+    with open('data/latte.json') as file:
+        lattes = json.load(file)
+    with open('data/milktea.json') as file:
+        milk_teas = json.load(file)
+    with open('data/fruittea.json') as file:
+        fruit_teas = json.load(file)
+    with open('data/addons.json') as file:
+        addons = json.load(file)
+    return lattes, milk_teas, fruit_teas, addons
 
 # ——— FUNCTION CART ——— #
 
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
-    '''docstring testing'''
+    """Check the chosen drink options, then add the drink to the cart."""
     
     drink = request.form['drink']
     size = request.form['size']
@@ -166,6 +168,7 @@ def add_to_cart():
 
 @app.route("/remove_from_cart/<drink>")
 def remove_from_cart(drink):
+    """Remove one item from the cart using the bag popup."""
     cart = session.get('cart', {})
 
     if drink in cart:
@@ -180,6 +183,7 @@ def remove_from_cart(drink):
 
 @app.route("/checkout", methods=['POST'])
 def invoice():
+    """Check the checkout form, then save the order in the database."""
     customer_name = request.form['customer_name'].strip().title()
     customer_email = request.form['customer_email'].strip()
     address = request.form['address'].strip()
@@ -222,6 +226,7 @@ def invoice():
 
 @app.context_processor # ——— use to show the item in a cart to all html templates ——— #
 def inject_cart():
+    """Make the cart seen/available in every template"""
     cart = session.get('cart', {})
     total, drinks_subtotal, addon_subtotal, discount_applied, subtotal, discount_amount = calculate_total(cart)
     return {'cart': cart, 'total': total, 'drinks_subtotal': drinks_subtotal,
@@ -231,6 +236,7 @@ def inject_cart():
 # ——— FUNCTION ——— #
 
 def calculate_total(cart):
+    """Work out the cart totals and apply the discount."""
     drinks_subtotal = sum(item.get('drinks_price', item['price']) * item['quantity'] for item in cart.values())
     addon_subtotal = sum(item.get('addons_price', 0) * item['quantity'] for item in cart.values())
 
@@ -253,6 +259,7 @@ def calculate_total(cart):
     # ——— FUNCTION CANCEL ORDER ——— #
 @app.route('/cancel_order', methods=['POST'])
 def cancel_order():
+    """Empty the whole cart when the customer cancels their order."""
     session.pop('cart', None)
     session.pop('selected_addons', None)
     flash("Your order has been cancelled.", "error")
@@ -261,6 +268,7 @@ def cancel_order():
 
 @app.route('/update_quantity', methods=['POST'])
 def update_quantity():
+    """Increase or decrease the quantity of one item on the order page."""
     key = request.form['key']
     action = request.form['action']
     cart = session.get('cart', {})
@@ -281,6 +289,7 @@ def update_quantity():
 
 @app.route('/remove_item', methods=['POST'])
 def remove_item():
+    """Remove one item using the Remove button on the order page."""
     key = request.form['key']
     cart = session.get('cart', {})
 
@@ -295,11 +304,13 @@ def remove_item():
 
 @app.route("/")
 def index():
+    """Show the home page."""
     lattes, milk_teas, fruit_teas, addons = load_data()
     return render_template("index.html", lattes=lattes, milk_teas=milk_teas, fruit_teas=fruit_teas, addons=addons)
 
 @app.route("/menu")
 def menu(): 
+    """Show the drink menu page."""
     lattes, milk_teas, fruit_teas, addons = load_data()
 
 
@@ -308,12 +319,14 @@ def menu():
 
 @app.route("/order")
 def order():
+    """Show the order page, and the success message after checkout."""
     order_placed = session.pop('order_placed', None)
     return render_template("order.html", order_placed=order_placed)
 
 
 @app.route('/order_history')
 def order_history():
+    """Show every saved order. Above newest, Below oldest"""
     with sqlite3.connect('drink_shop.db') as conn:
         cursor = conn.cursor()
         cursor.execute("SELECT order_id, invoice_number, customer_name, customer_email, address, payment_method, items, total, date FROM orders ORDER BY date DESC")
@@ -336,7 +349,8 @@ def order_history():
 
 @app.route("/invoice/<invoice_number>/download")
 def download_invoice(invoice_number):
-    # 1. get the order from the database
+    """Send the invoice for one saved order as a text file download."""
+    # get the order from the database
     with sqlite3.connect('drink_shop.db') as conn:
         cursor = conn.cursor()
         cursor.execute(
@@ -383,6 +397,7 @@ def download_invoice(invoice_number):
 
 @app.route('/cancel_saved_order/<int:order_id>', methods=['POST'])
 def cancel_saved_order(order_id):
+    """Delete one saved order from the database."""
     with sqlite3.connect('drink_shop.db') as conn:
         cursor = conn.cursor()
         cursor.execute("DELETE FROM orders WHERE order_id = ?", (order_id,))
@@ -396,6 +411,7 @@ def cancel_saved_order(order_id):
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
+    """Show the contact page, and email the message when it is sent."""
     success = False
     name = ""
     if request.method == "POST":
