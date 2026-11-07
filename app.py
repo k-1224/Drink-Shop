@@ -1,8 +1,10 @@
-import os
 import json
 import datetime
 import sqlite3
 from flask import Flask, render_template, request, redirect, url_for, session, flash, Response
+import os
+import smtplib
+from email.message import EmailMessage
 
 app = Flask(__name__)
 app.secret_key = 'drink143'
@@ -20,6 +22,9 @@ app.secret_key = 'drink143'
 sugar_levels = ['Standard Sugar (100%)', 'Half Sugar (50%)', 'Less Sugar (30%)', 'No Sugar']
 
 ice_levels = ['Full Ice (100%)', ' Half Ice (50%)', 'Less Ice (25%)','No Ice']
+
+MAIL_USER = "nomolicious.co@gmail.com"
+MAIL_PASSWORD = "pqtbpsssimewklab"
 
 
 # ——— LOADING DATA ——— #
@@ -385,9 +390,54 @@ def cancel_saved_order(order_id):
     flash("Order cancelled.", "error")
     return redirect(url_for('order_history'))
 
-@app.route("/contact")
+# @app.route("/contact")
+# def contact():
+#     return render_template("contact.html")
+
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
-    return render_template("contact.html")
+    success = False
+    name = ""
+    if request.method == "POST":
+        name = request.form["firstname"]
+        lastname = request.form["lastname"]
+        email = request.form["email"]
+        subject = request.form["subject"]
+        feedback = request.form["feedback"]
+
+        # email to the shop 
+        msg = EmailMessage()
+        msg["Subject"] = f"Nomolicious contact: {subject}"
+        msg["From"] = MAIL_USER
+        msg["To"] = MAIL_USER
+        msg["Reply-To"] = email
+        msg.set_content(
+            f"Name: {name} {lastname}\n"
+            f"Email: {email}\n\n"
+            f"{feedback}"
+        )
+
+        # auto-reply to the customer
+        reply = EmailMessage()
+        reply["Subject"] = "We got your message - Nomolicious"
+        reply["From"] = MAIL_USER
+        reply["To"] = email
+        reply.set_content(
+            f"Hi {name},\n\n"
+            "Thanks for contacting Nomolicious! We've received your message "
+            "and will get back to you soon.\n\n"
+            f"Your message:\n{feedback}\n\n"
+            "- The Nomolicious Team"
+        )
+        
+        with smtplib.SMTP("smtp.gmail.com", 587) as server:
+            server.starttls()
+            server.login(MAIL_USER, MAIL_PASSWORD)
+            server.send_message(msg)
+            server.send_message(reply)
+
+        success = True
+    return render_template("contact.html", success=success, name=name)
 
 if __name__ == '__main__':
     app.run(debug=True)
