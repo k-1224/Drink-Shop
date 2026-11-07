@@ -620,3 +620,156 @@
   background: #fdf0ee;
   border-color: #c0392b;
 }
+
+/* ======= MOBILE MEDIA QUERY (order page + order history) ======= */
+
+
+@media (max-width: 1000px) {
+
+  .history-page {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* ----- Order page ----- */
+  .order-page {
+    padding: 24px 12px 32px;
+  }
+
+  .order-page .headline {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+
+  .order-layout {
+    grid-template-columns: 1fr;    
+    gap: 12px;
+  }
+
+  .order-card {
+    padding: 20px 16px;
+    margin: 0;
+  }
+
+  .order-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .order-item {
+    flex-wrap: wrap;               
+    gap: 12px;
+  }
+
+  .item-info {
+    flex: 1 1 180px;
+    min-width: 0;
+  }
+
+  .item-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .payment-details {
+    padding: 8px 0;
+  }
+
+  .details-form input[type="email"],
+  .details-form input[type="text"],
+  .details-form input[type="password"] {
+    font-size: 16px;
+  }
+
+  /* ----- Empty bag + order success ----- */
+  .empty-cart {
+    padding: 32px 12px;
+  }
+
+  .order-success {
+    margin: 16px auto 0;
+    padding: 28px 16px 24px;
+  }
+
+  .order-success h2 {
+    font-size: 2rem;
+  }
+
+  /* ----- Order history: each order becomes its own card ----- */
+  .history-page {
+    padding: 24px 12px 40px;
+  }
+
+  .history-page h2 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+
+  .history {
+    background: none;
+    border: none;
+    overflow-x: visible;
+  }
+
+  .history table {
+    min-width: 0;
+    table-layout: auto;
+  }
+
+  .history table,
+  .history tbody,
+  .history tr,
+  .history td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .history thead {
+    display: none;                
+  }
+
+  .history tr {
+    margin-bottom: 16px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .history td {
+    padding: 10px 16px;
+  }
+
+  .history td:first-child {
+    border-top: none;
+  }
+
+  .history td::before {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8a6a4a;
+  }
+
+  .td-button {
+    text-align: left;              
+  }
+
+  .history td:nth-child(1)::before { content: "Invoice Number"; }
+  .history td:nth-child(2)::before { content: "Customer Name"; }
+  .history td:nth-child(3)::before { content: "Items"; }
+  .history td:nth-child(4)::before { content: "Payment"; }
+  .history td:nth-child(5)::before { content: "Total ($)"; }
+  .history td:nth-child(6)::before { content: "Date"; }
+  .history td:nth-child(7)::before { content: "Action"; }
+}
