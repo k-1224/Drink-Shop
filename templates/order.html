@@ -26,39 +26,41 @@
         <section class="order-card">
             <h2>Order Summary</h2>
             <!-- this would show up if there item place in  a cart -->
-            {% for key, item in cart.items() %}
-            <div class="order-item">
-                <div class="item-info">
-                    <h3>{{ item.name }}</h3>
-                    <p class="item-details">
-                        {{ item.size }} · {{ item.sugar }} · {{ item.ice }}
-                        {% if item.addons %}<br>Add-ons: {{ item.addons | join(", ") }}{% endif %}
-                    </p>
-                    <p class="item-price">${{ "%.2f"|format(item.price) }} each</p>
-                </div>
+            <div class="order-items">
+                {% for key, item in cart.items() %}
+                <div class="order-item">
+                    <div class="item-info">
+                        <h3>{{ item.name }}</h3>
+                        <p class="item-details">
+                            {{ item.size }} · {{ item.sugar }} · {{ item.ice }}
+                            {% if item.addons %}<br>Add-ons: {{ item.addons | join(", ") }}{% endif %}
+                        </p>
+                        <p class="item-price">${{ "%.2f"|format(item.price) }} each</p>
+                    </div>
 
-                <div class="item-actions">
-                    <div class="qty">
-                        <form method="POST" action="{{ url_for('update_quantity') }}">
+                    <div class="item-actions">
+                        <div class="qty">
+                            <form method="POST" action="{{ url_for('update_quantity') }}">
+                                <input type="hidden" name="key" value="{{ key }}">
+                                <input type="hidden" name="action" value="decrease">
+                                <button type="submit" class="qty-btn" aria-label="Decrease quantity">−</button>
+                            </form>
+                            <span class="qty-number">{{ item.quantity }}</span>
+                            <form method="POST" action="{{ url_for('update_quantity') }}">
+                                <input type="hidden" name="key" value="{{ key }}">
+                                <input type="hidden" name="action" value="increase">
+                                <button type="submit" class="qty-btn" aria-label="Increase quantity">+</button>
+                            </form>
+                        </div>
+                        <p class="line-total">${{ "%.2f"|format(item.price * item.quantity) }}</p>
+                        <form method="POST" action="{{ url_for('remove_item') }}">
                             <input type="hidden" name="key" value="{{ key }}">
-                            <input type="hidden" name="action" value="decrease">
-                            <button type="submit" class="qty-btn" aria-label="Decrease quantity">−</button>
-                        </form>
-                        <span class="qty-number">{{ item.quantity }}</span>
-                        <form method="POST" action="{{ url_for('update_quantity') }}">
-                            <input type="hidden" name="key" value="{{ key }}">
-                            <input type="hidden" name="action" value="increase">
-                            <button type="submit" class="qty-btn" aria-label="Increase quantity">+</button>
+                            <button type="submit" class="remove-btn">Remove</button>
                         </form>
                     </div>
-                    <p class="line-total">${{ "%.2f"|format(item.price * item.quantity) }}</p>
-                    <form method="POST" action="{{ url_for('remove_item') }}">
-                        <input type="hidden" name="key" value="{{ key }}">
-                        <button type="submit" class="remove-btn">Remove</button>
-                    </form>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
             <!-- If items meet the total price for quantity -->
             {% if discount_applied %}
             <p class="item-details">Subtotal: ${{ "%.2f"|format(subtotal) }} · Discount (10%): -${{ "%.2f"|format(discount_amount) }}</p>

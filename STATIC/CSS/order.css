@@ -42,7 +42,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 20px;
-  align-items: start;
+  align-items: stretch;
 }
 
 
@@ -61,7 +61,42 @@
   font-size: 1.8rem; 
 }
 
+/* the summary card copies the height of the Your Details card */
+.order-card:first-child {
+  display: flex;
+  flex-direction: column;
+  contain: size;
+}
+
 /* ITEMS */
+
+/* only the drinks scroll, the Total stays below them */
+.order-items {
+  flex: 0 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+/* same scrollbar as the shopping bag */
+.order-items::-webkit-scrollbar {
+  width: 8px;
+}
+
+.order-items::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+}
+
+.order-items::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 4px;
+}
+
+.order-items::-webkit-scrollbar-thumb:hover {
+  background-color: var(--cta-color);
+}
+
 .order-item {
   display: flex;
   justify-content: space-between;
@@ -133,6 +168,7 @@
   display: flex;
   justify-content: space-between;
   padding-top: 16px;
+  padding-right: 8px;
   font-size: 1.15rem;
   font-weight: 700;
 }
@@ -652,6 +688,16 @@
   .order-card {
     padding: 20px 16px;
     margin: 0;
+  }
+
+  /* cards are stacked on mobile, so the summary card goes back to its own height */
+  .order-card:first-child {
+    contain: none;
+  }
+
+  .order-items {
+    flex: none;
+    max-height: 320px;
   }
 
   .order-card h2 {
