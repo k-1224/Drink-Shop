@@ -63,7 +63,7 @@
     </div>
   </header>
     {% block content %} {% endblock %}
-  <footer>
+  <footer id="footer">
   <div class="footer-first">
     <div class="footer-webtitle">
       <h1>Nomolicious</h1>
@@ -97,11 +97,14 @@
     </div>
     <div class="footer-question">
       <h2>Need some help?</h2>
-      <p>Contact Us. Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-      <form>
-        <input type="email" id="email" name="email" placeholder="Email" required>
-        <button>Submit</button>
+      <p>Leave your email and our team will get back to you soon.</p>
+      <form method="POST" action="{{ url_for('footer_help') }}">
+        <input type="email" id="footer-email" name="email" placeholder="Your email address" required>
+        <button type="submit">Send</button>
       </form>
+      {% if footer_message %}
+      <p class="footer-message">{{ footer_message }}</p>
+      {% endif %}
     </div>
   </div>
   <hr class="footer-horizontal-line">

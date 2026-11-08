@@ -233,6 +233,11 @@ def inject_cart():
             'addon_subtotal': addon_subtotal, 'discount_applied': discount_applied,
             'subtotal': subtotal, 'discount_amount': discount_amount}
 
+@app.context_processor
+def inject_footer_message():
+    """Show the footer form result once, then clear it."""
+    return {'footer_message': session.pop('footer_message', None)}
+
 # ——— FUNCTION ——— #
 
 def calculate_total(cart):
@@ -455,6 +460,39 @@ def contact():
 
         success = True
     return render_template("contact.html", success=success, name=name)
+
+@app.route("/footer_help", methods=["POST"])
+def footer_help():
+    """Email a help request from the footer and send an auto-reply."""
+    email = request.form["email"]
+
+    # email to the shop
+    msg = EmailMessage()
+    msg["Subject"] = "Nomolicious help request"
+    msg["From"] = MAIL_USER
+    msg["To"] = MAIL_USER
+    msg["Reply-To"] = email
+    msg.set_content(f"Help request from: {email}")
+
+    # auto-reply to the customer
+    reply = EmailMessage()
+    reply["Subject"] = "We got your request - Nomolicious"
+    reply["From"] = MAIL_USER
+    reply["To"] = email
+    reply.set_content(
+        "Thanks for reaching out! We'll get back to you soon.\n\n"
+        "- The Nomolicious Team"
+    )
+
+    with smtplib.SMTP("smtp.gmail.com", 587) as server:
+        server.starttls()
+        server.login(MAIL_USER, MAIL_PASSWORD)
+        server.send_message(msg)
+        server.send_message(reply)
+
+    session['footer_message'] = "Thanks! We've got your email."
+    # #footer scrolls the page back down to the footer
+    return redirect(request.referrer + "#footer")
 
 if __name__ == '__main__':
     app.run(debug=True)
