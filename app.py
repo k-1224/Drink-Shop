@@ -1,27 +1,30 @@
+"""This is the backend for my Website."""
 import json
 import datetime
 import sqlite3
-from flask import Flask, render_template, request, redirect, url_for, session, flash, Response
-import os
+from flask import Flask, render_template, request
+from flask import Flask, redirect, url_for, session, flash, Response
 import smtplib
 from email.message import EmailMessage
 
 app = Flask(__name__)
 app.secret_key = 'drink143'
- 
-# safe
-# capitalize
-# lower
-# upper 
-# title 
-# trim
-# striptags
 
 # ——— GLOBAL VARIABLES ——— #
 
-sugar_levels = ['Standard Sugar (100%)', 'Half Sugar (50%)', 'Less Sugar (30%)', 'No Sugar']
+sugar_levels = [
+    'Standard Sugar (100%)',
+    'Half Sugar (50%)',
+    'Less Sugar (30%)',
+    'No Sugar'
+    ]
 
-ice_levels = ['Full Ice (100%)', ' Half Ice (50%)', 'Less Ice (25%)','No Ice']
+ice_levels = [
+    'Full Ice (100%)',
+    ' Half Ice (50%)',
+    'Less Ice (25%)',
+    'No Ice'
+    ]
 
 MAIL_USER = "nomolicious.co@gmail.com"
 MAIL_PASSWORD = "pqtbpsssimewklab"
@@ -47,9 +50,8 @@ def initialise_database():
         ''')
         conn.commit()
 
+
 initialise_database()
-
-
 
 
 def load_data():
@@ -66,10 +68,10 @@ def load_data():
 
 # ——— FUNCTION CART ——— #
 
+
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
     """Check the chosen drink options, then add the drink to the cart."""
-    
     drink = request.form['drink']
     size = request.form['size']
     sugar = request.form.get('sugar')
@@ -78,7 +80,13 @@ def add_to_cart():
     ice = request.form.get('ice')
 
     lattes, milk_teas, fruit_teas, addons = load_data()
-    drinks = {**lattes, **milk_teas, **fruit_teas} #the 2 asterisk beside variables are to unpack three dictionaries into one#
+    drinks = {
+        **lattes,
+        **milk_teas,
+        **fruit_teas
+        }
+    # the 2 asterisk beside variables are to #
+    # unpack three dictionaries into one #
 
     if drink not in drinks:
         flash("Drink not found.", "error")
@@ -98,7 +106,6 @@ def add_to_cart():
     if ice not in ice_levels:
         flash("Please choose a ice levels,", "error")
         return redirect(url_for('menu'))
-        
 
     drinks_price = None
     for option in drinks[drink]['size_prices']:
@@ -118,8 +125,8 @@ def add_to_cart():
         addons_price += float(available_addons[name]['price'])
 
     if len(chosen_addons) > 3:
-        flash(f"You can choose up to 3 add-ons per drink.", "error")
-        return redirect(url_for('menu'))        
+        flash("You can choose up to 3 add-ons per drink.", "error")
+        return redirect(url_for('menu'))
 
     price = drinks_price + addons_price
 
@@ -135,11 +142,15 @@ def add_to_cart():
         return redirect(url_for('menu'))
 
     if original_quantity + quantity > available_stock:
-        flash(f"Sorry, only {available_stock} {drink}(s) left in stock.", "error")
+        flash(
+            f"Sorry, only {available_stock} {drink}(s) left in stock.",
+            "error")
         return redirect(url_for('menu'))
 
     if quantity >= 10:
-        flash("You are ordering a lot! Consider calling us for a special deal.", "error")
+        flash(
+            "You are ordering a lot! Consider calling us for a special deal.",
+            "error")
         return redirect(url_for('menu'))
 
     key = '|'.join([drink, size, sugar, ice] + sorted(chosen_addons))
@@ -163,8 +174,9 @@ def add_to_cart():
     session['cart'] = cart
     flash(f"{quantity} x {drink} added to cart.")
     return redirect(url_for('menu'))
+    # ——— debug some of my code from google ai ——— #
+    # ——— because mine are very complex and not easy to fix ——— #
 
- # ——— debug some of my code from google ai, because mine are very complex and not easy to fix ——— #
 
 @app.route("/remove_from_cart/<drink>")
 def remove_from_cart(drink):
@@ -205,7 +217,8 @@ def invoice():
             flash("Please enter a valid 16-digit card number.", "error")
             return redirect(url_for('order'))
 
-    total, drinks_subtotal, addon_subtotal, discount_applied, subtotal, discount_amount = calculate_total(cart)
+    (total, drinks_subtotal, addon_subtotal, discount_applied,
+     subtotal, discount_amount) = calculate_total(cart)
 
     invoice_date = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     invoice_number = f"INV_{customer_name.replace(' ', '_')}_{invoice_date}"
@@ -213,25 +226,36 @@ def invoice():
     with sqlite3.connect('drink_shop.db') as conn:
         cursor = conn.cursor()
         cursor.execute('''
-        INSERT INTO orders (invoice_number, customer_name, customer_email, address, payment_method, items, total)
+        INSERT INTO orders (
+        invoice_number, customer_name, customer_email,
+        address, payment_method, items, total)
         VALUES (?,?,?,?,?,?,?)
-        ''', (invoice_number, customer_name, customer_email, address, payment_method, json.dumps(cart), total))
+        ''', (
+            invoice_number, customer_name, customer_email,
+            address, payment_method, json.dumps(cart), total))
         conn.commit()
 
     session.pop('cart', None)
-    session['order_placed'] = {'name': customer_name, 'invoice': invoice_number}
+    session['order_placed'] = {
+        'name': customer_name,
+        'invoice': invoice_number}
     return redirect(url_for('order'))
 
+# ——— use to show the item in a cart to all html templates ——— #
 
 
-@app.context_processor # ——— use to show the item in a cart to all html templates ——— #
+@app.context_processor
 def inject_cart():
-    """Make the cart seen/available in every template"""
+    """Make the cart seen/available in every template."""
     cart = session.get('cart', {})
-    total, drinks_subtotal, addon_subtotal, discount_applied, subtotal, discount_amount = calculate_total(cart)
+    (total, drinks_subtotal, addon_subtotal, discount_applied,
+        subtotal, discount_amount) = calculate_total(cart)
     return {'cart': cart, 'total': total, 'drinks_subtotal': drinks_subtotal,
-            'addon_subtotal': addon_subtotal, 'discount_applied': discount_applied,
-            'subtotal': subtotal, 'discount_amount': discount_amount}
+            'addon_subtotal': addon_subtotal,
+            'discount_applied': discount_applied,
+            'subtotal': subtotal,
+            'discount_amount': discount_amount}
+
 
 @app.context_processor
 def inject_footer_message():
@@ -240,14 +264,21 @@ def inject_footer_message():
 
 # ——— FUNCTION ——— #
 
+
 def calculate_total(cart):
     """Work out the cart totals and apply the discount."""
-    drinks_subtotal = sum(item.get('drinks_price', item['price']) * item['quantity'] for item in cart.values())
-    addon_subtotal = sum(item.get('addons_price', 0) * item['quantity'] for item in cart.values())
+    drinks_subtotal = sum(item.get(
+        'drinks_price', item['price']) * item['quantity']
+        for item in cart.values())
+    addon_subtotal = sum(item.get(
+        'addons_price', 0) * item['quantity']
+        for item in cart.values())
 
     subtotal = drinks_subtotal + addon_subtotal
 
-    drinks_subtotal = sum(item.get('drinks_price', item['price']) * item['quantity'] for item in cart.values())
+    drinks_subtotal = sum(
+        item.get('drinks_price', item['price']) * item['quantity']
+        for item in cart.values())
 
     discount_applied = False
     discount_amount = 0
@@ -258,10 +289,12 @@ def calculate_total(cart):
         total = subtotal - discount_amount
         discount_applied = True
 
-    return total, drinks_subtotal, addon_subtotal, discount_applied, subtotal, discount_amount
-
+    return (total, drinks_subtotal, addon_subtotal,
+            discount_applied, subtotal, discount_amount)
 
     # ——— FUNCTION CANCEL ORDER ——— #
+
+
 @app.route('/cancel_order', methods=['POST'])
 def cancel_order():
     """Empty the whole cart when the customer cancels their order."""
@@ -292,6 +325,7 @@ def update_quantity():
     session['cart'] = cart
     return redirect(url_for('order'))
 
+
 @app.route('/remove_item', methods=['POST'])
 def remove_item():
     """Remove one item using the Remove button on the order page."""
@@ -307,34 +341,45 @@ def remove_item():
 
 # ——— ROUTE ——— #
 
+
 @app.route("/")
 def index():
     """Show the home page."""
     lattes, milk_teas, fruit_teas, addons = load_data()
-    return render_template("index.html", lattes=lattes, milk_teas=milk_teas, fruit_teas=fruit_teas, addons=addons)
+
+    return render_template("index.html", lattes=lattes, 
+                           milk_teas=milk_teas, fruit_teas=fruit_teas, addons=addons)
+
 
 @app.route("/menu")
-def menu(): 
+def menu():
     """Show the drink menu page."""
     lattes, milk_teas, fruit_teas, addons = load_data()
 
+    return render_template("menu.html", lattes=lattes, 
+                           milk_teas=milk_teas, fruit_teas=fruit_teas,
+                           addons=addons, sugar_levels=sugar_levels,
+                           ice_levels=ice_levels)
 
-    
-    return render_template("menu.html", lattes=lattes, milk_teas=milk_teas, fruit_teas=fruit_teas, addons=addons, sugar_levels=sugar_levels, ice_levels=ice_levels)
 
 @app.route("/order")
 def order():
     """Show the order page, and the success message after checkout."""
     order_placed = session.pop('order_placed', None)
+
     return render_template("order.html", order_placed=order_placed)
 
 
 @app.route('/order_history')
 def order_history():
-    """Show every saved order. Above newest, Below oldest"""
+    """Show every saved order. Above newest, Below oldest."""
     with sqlite3.connect('drink_shop.db') as conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT order_id, invoice_number, customer_name, customer_email, address, payment_method, items, total, date FROM orders ORDER BY date DESC")
+        cursor.execute(
+            "SELECT order_id, invoice_number, " \
+            "customer_name, customer_email, " \
+            "address, payment_method, items, " \
+            "total, date FROM orders ORDER BY date DESC")
         rows = cursor.fetchall()
 
     orders = []
@@ -352,6 +397,7 @@ def order_history():
         })
     return render_template('order_history.html', orders=orders)
 
+
 @app.route("/invoice/<invoice_number>/download")
 def download_invoice(invoice_number):
     """Send the invoice for one saved order as a text file download."""
@@ -359,7 +405,8 @@ def download_invoice(invoice_number):
     with sqlite3.connect('drink_shop.db') as conn:
         cursor = conn.cursor()
         cursor.execute(
-            "SELECT invoice_number, customer_name, items, total, date FROM orders WHERE invoice_number = ?",
+            "SELECT invoice_number, customer_name, items, total, date "
+            "FROM orders WHERE invoice_number = ?",
             (invoice_number,)
         )
         row = cursor.fetchone()
@@ -379,10 +426,14 @@ def download_invoice(invoice_number):
     text += "Items:\n"
 
     subtotal = 0
-    for key, item in items.items():
+    for item in items.values():
         line_total = item['quantity'] * item['price']
         subtotal += line_total
-        text += f"-{item['name']} ({item['size']}, {item['sugar']}, {item['ice']}): {item['quantity']} x ${item['price']:.2f} = ${line_total:.2f}\n"
+        text += (
+            f"-{item['name']} ({item['size']}, {item['sugar']}, "
+            f"{item['ice']}): {item['quantity']} x "
+            f"${item['price']:.2f} = ${line_total:.2f}\n"
+        )
         if item['addons']:
             text += f"   Add-ons: {', '.join(item['addons'])}\n"
 
@@ -393,12 +444,13 @@ def download_invoice(invoice_number):
         text += f"Discount (10%): -${discount:.2f}\n"
     text += f"Total: ${total:.2f}"
 
-    #  send it as a download, response are required to dl it
+    # send it as a download, a Response is required to download it
     return Response(
         text,
         mimetype="text/plain",
         headers={"Content-Disposition": f"attachment; filename={row[0]}.txt"}
     )
+
 
 @app.route('/cancel_saved_order/<int:order_id>', methods=['POST'])
 def cancel_saved_order(order_id):
@@ -410,9 +462,6 @@ def cancel_saved_order(order_id):
     flash("Order cancelled.", "error")
     return redirect(url_for('order_history'))
 
-# @app.route("/contact")
-# def contact():
-#     return render_template("contact.html")
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
@@ -426,7 +475,7 @@ def contact():
         subject = request.form["subject"]
         feedback = request.form["feedback"]
 
-        # email to the shop 
+        # email to the shop
         msg = EmailMessage()
         msg["Subject"] = f"Nomolicious contact: {subject}"
         msg["From"] = MAIL_USER
@@ -451,7 +500,7 @@ def contact():
             f"Your message:\n{feedback}\n\n"
             "- The Nomolicious Team"
         )
-        
+
         with smtplib.SMTP("smtp.gmail.com", 587) as server:
             server.starttls()
             server.login(MAIL_USER, MAIL_PASSWORD)
@@ -460,6 +509,7 @@ def contact():
 
         success = True
     return render_template("contact.html", success=success, name=name)
+
 
 @app.route("/footer_help", methods=["POST"])
 def footer_help():
@@ -494,6 +544,6 @@ def footer_help():
     # #footer scrolls the page back down to the footer
     return redirect(request.referrer + "#footer")
 
+
 if __name__ == '__main__':
     app.run(debug=True)
-
