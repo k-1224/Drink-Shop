@@ -347,8 +347,12 @@ def index():
     """Show the home page."""
     lattes, milk_teas, fruit_teas, addons = load_data()
 
-    return render_template("index.html", lattes=lattes, 
-                           milk_teas=milk_teas, fruit_teas=fruit_teas, addons=addons)
+    return render_template(
+        "index.html",
+        lattes=lattes,
+        milk_teas=milk_teas,
+        fruit_teas=fruit_teas,
+        addons=addons)
 
 
 @app.route("/menu")
@@ -356,7 +360,7 @@ def menu():
     """Show the drink menu page."""
     lattes, milk_teas, fruit_teas, addons = load_data()
 
-    return render_template("menu.html", lattes=lattes, 
+    return render_template("menu.html", lattes=lattes,
                            milk_teas=milk_teas, fruit_teas=fruit_teas,
                            addons=addons, sugar_levels=sugar_levels,
                            ice_levels=ice_levels)
@@ -376,9 +380,9 @@ def order_history():
     with sqlite3.connect('drink_shop.db') as conn:
         cursor = conn.cursor()
         cursor.execute(
-            "SELECT order_id, invoice_number, " \
-            "customer_name, customer_email, " \
-            "address, payment_method, items, " \
+            "SELECT order_id, invoice_number, "
+            "customer_name, customer_email, "
+            "address, payment_method, items, "
             "total, date FROM orders ORDER BY date DESC")
         rows = cursor.fetchall()
 
